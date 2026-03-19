@@ -4,6 +4,8 @@ $pageTitle = 'Hesten\'s Learning Library';
 $pageDescription = 'Browse your personal collection of digital books in a Netflix-style interface.';
 $pageKeywords = 'library, books, epub, pdf, digital library, collection, education, textbooks';
 $pageAuthor = 'Hesten\'s Learning';
+$welcomeMessage = "Welcome to Hesten's Learning Library";
+$welcomeParagraph = "Explore our vast collection of fiction classics and comprehensive educational resources for all grade levels.";
 
 // --- Book Data Array ---
 $jsonString = file_get_contents(__DIR__ . '/bookd.json');

@@ -280,20 +280,64 @@
     </div>
 
  <!-- Announcement Bar -->
-    <div id="announcement-bar" class="hidden bg-primary text-white text-center py-2 px-8 relative transition-colors duration-300 shadow-md z-40" role="status">
-        <p class="text-sm font-medium"><i class="fas fa-hammer mr-2"></i> Work in Progress: We are updating sections daily. Have question please email me at <a href="mailto:admin@hestena62.com" class="underline hover:text-blue-200">admin@hestena62.com</a></p>
-        <button id="close-announcement" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/80 hover:text-white p-2 rounded-full transition-colors" aria-label="Close announcement" type="button"><i class="fas fa-times"></i></button>
+    <div id="announcement-bar" class="hidden bg-primary text-white text-center py-2 px-12 sm:px-16 relative transition-colors duration-300 shadow-md z-40" role="status">
+        <button id="prev-announcement" class="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 text-white/80 hover:text-white p-1 sm:p-2 rounded-full transition-colors" aria-label="Previous announcement" type="button"><i class="fas fa-chevron-left"></i></button>
+        
+        <div id="announcement-content-container" class="overflow-hidden w-full flex justify-center items-center" style="min-height: 24px;">
+            <p id="announcement-content" class="text-xs sm:text-sm font-medium transition-opacity duration-300 w-full max-w-4xl mx-auto truncate sm:whitespace-normal">
+                <!-- Content will be injected by JS -->
+            </p>
+        </div>
+
+        <button id="next-announcement" class="absolute right-10 sm:right-14 top-1/2 transform -translate-y-1/2 text-white/80 hover:text-white p-1 sm:p-2 rounded-full transition-colors" aria-label="Next announcement" type="button"><i class="fas fa-chevron-right"></i></button>
+        <button id="close-announcement" class="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 text-white/80 hover:text-white p-1 sm:p-2 rounded-full transition-colors" aria-label="Close announcement" type="button"><i class="fas fa-times"></i></button>
     </div>
     <script>
         // Announcement Bar Logic
         const annBar = document.getElementById('announcement-bar');
+        const annContent = document.getElementById('announcement-content');
         const annClose = document.getElementById('close-announcement');
-        // Change this version string to force the announcement to show again for all users
-        const ANN_VERSION = 'v1.0'; 
+        const annPrev = document.getElementById('prev-announcement');
+        const annNext = document.getElementById('next-announcement');
         
+        // Change this version string to force the announcement to show again for all users
+        const ANN_VERSION = 'v1.1'; 
+        
+        const announcements = [
+            '<i class="fas fa-hammer mr-2"></i> Work in Progress: We are updating sections daily. Have question please email me at <a href="mailto:admin@hestena62.com" class="underline hover:text-blue-200">admin@hestena62.com</a>',
+            '<i class="fas fa-star mr-2"></i> New Feature: You can now backup your site data directly to Google Drive in the settings menu!',
+            '<i class="fas fa-book mr-2"></i> Check out the expanded library collection with our newly added open-source titles.'
+        ];
+        
+        let currentAnnIndex = 0;
+
+        function renderAnnouncement() {
+            if (!annContent) return;
+            // Fade out
+            annContent.style.opacity = '0';
+            setTimeout(() => {
+                annContent.innerHTML = announcements[currentAnnIndex];
+                // Fade in
+                annContent.style.opacity = '1';
+            }, 150); // wait halfway to swap text
+        }
+
         if (annBar && annClose) {
             if (localStorage.getItem('hl_announcement_dismissed') !== ANN_VERSION) {
                 annBar.classList.remove('hidden');
+                renderAnnouncement(); // init first slide
+                
+                // Set up navigation
+                if (annPrev && annNext) {
+                    annPrev.onclick = () => {
+                        currentAnnIndex = (currentAnnIndex > 0) ? currentAnnIndex - 1 : announcements.length - 1;
+                        renderAnnouncement();
+                    };
+                    annNext.onclick = () => {
+                        currentAnnIndex = (currentAnnIndex < announcements.length - 1) ? currentAnnIndex + 1 : 0;
+                        renderAnnouncement();
+                    };
+                }
             }
             annClose.onclick = () => {
                 annBar.classList.add('hidden');
