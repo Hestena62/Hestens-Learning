@@ -39,10 +39,8 @@ let speechUtterance = null; // For TTS
         // Expose settings to window
         window.currentSettings = currentSettings;
 
-        // Init TTS listeners if needed
-        if (currentSettings.textToSpeech) {
-            initTTS();
-        }
+        // Init toolbar immediately
+        initSelectionToolbar();
     } catch (e) {
         console.warn('LocalStorage access denied', e);
     }
@@ -78,19 +76,23 @@ function applySettings(s) {
     b.style.setProperty('--site-letter-spacing', `${s.letterSpacing}em`);
     b.style.setProperty('--site-word-spacing', `${s.wordSpacing}em`);
 
-    // Handle Font Family (Quote if has spaces)
-    const fontVal = s.fontFamily.includes(' ') ? `"${s.fontFamily}"` : s.fontFamily;
-    r.style.setProperty('--site-font-family', fontVal);
-    b.style.setProperty('--site-font-family', fontVal);
+    // Font family mapped to Tailwind classes
+    const fontClassMap = {
+        'Outfit': 'font-outfit',
+        'Inter': 'font-inter',
+        'Open Dyslexic': 'font-dyslexic',
+        'Lexend': 'font-lexend',
+        'Comic Neue': 'font-comicneue',
+        'Roboto Mono': 'font-mono'
+    };
+    
+    const allFontClasses = ['font-outfit', 'font-inter', 'font-dyslexic', 'font-lexend', 'font-comicneue', 'font-mono', 'font-sans'];
+    b.classList.remove(...allFontClasses);
+    r.classList.remove(...allFontClasses);
 
-    // Apply explicit Tailwind class if using Dyslexic font to avoid var() caching issues on reload
-    if (s.fontFamily.includes('Dyslexic')) {
-        b.classList.add('font-dyslexic');
-        r.classList.add('font-dyslexic');
-    } else {
-        b.classList.remove('font-dyslexic');
-        r.classList.remove('font-dyslexic');
-    }
+    const fontClass = fontClassMap[s.fontFamily] || 'font-sans';
+    b.classList.add(fontClass);
+    r.classList.add(fontClass);
 
     // Saturation
     r.style.filter = `saturate(${s.saturation}%)`;
@@ -127,12 +129,8 @@ function applySettings(s) {
         m.style.backgroundColor = `rgba(0, 0, 0, ${s.maskOpacity})`;
     }
 
-    // TTS
-    if (s.textToSpeech) {
-        enableTTS();
-    } else {
-        disableTTS();
-    }
+    // Toolbar is managed centrally; just ensure it's initialized
+    initSelectionToolbar();
 
     // Text Align
     b.style.setProperty('--site-text-align', s.textAlign);
@@ -190,59 +188,102 @@ function syncPanelInputs(s) {
     if (el('panel-color-overlay')) el('panel-color-overlay').value = s.colorOverlay || 'none';
 }
 
-// --- Text-to-Speech Logic ---
-function initTTS() {
-    // If TTS is enabled, listen for text selection
+// --- Selection Toolbar (Define & TTS) ---
+let toolbarInitialized = false;
+function initSelectionToolbar() {
+    if (toolbarInitialized) return;
+    toolbarInitialized = true;
+    
+    let toolbar = document.getElementById('selection-toolbar');
+    if (!toolbar) {
+        toolbar = document.createElement('div');
+        toolbar.id = 'selection-toolbar';
+        toolbar.className = 'fixed z-[100] hidden flex-row gap-2 bg-white dark:bg-gray-800 shadow-lg p-2 rounded-lg border border-gray-200 dark:border-gray-700 animate-fade-in-up';
+        
+        const btnSpeak = document.createElement('button');
+        btnSpeak.id = 'btn-speak';
+        btnSpeak.innerHTML = '<i class="fas fa-volume-up"></i> Speak';
+        btnSpeak.className = 'bg-primary text-white px-3 py-1 rounded-md text-sm font-bold flex items-center gap-2 hover:bg-primary-dark transition-colors';
+        btnSpeak.onclick = () => {
+             const text = toolbar.dataset.selectedText;
+             if (text) speakText(text);
+             toolbar.classList.add('hidden');
+             window.getSelection().removeAllRanges();
+        };
+
+        const btnDefine = document.createElement('button');
+        btnDefine.id = 'btn-define';
+        btnDefine.innerHTML = '<i class="fas fa-book"></i> Define';
+        btnDefine.className = 'bg-secondary text-white px-3 py-1 rounded-md text-sm font-bold flex items-center gap-2 hover:bg-neutral-600 transition-colors bg-teal-600';
+        btnDefine.onclick = () => {
+             const text = toolbar.dataset.selectedText;
+             const cx = parseFloat(toolbar.dataset.clientX) || window.innerWidth / 2;
+             const cy = parseFloat(toolbar.dataset.clientY) || window.innerHeight / 2;
+             if (text) fetchDefinition(text, cx, cy);
+             toolbar.classList.add('hidden');
+        };
+
+        toolbar.appendChild(btnSpeak);
+        toolbar.appendChild(btnDefine);
+        document.body.appendChild(toolbar);
+    }
+
     document.addEventListener('mouseup', handleTextSelection);
-}
-
-function enableTTS() {
-    initTTS();
-}
-
-function disableTTS() {
-    document.removeEventListener('mouseup', handleTextSelection);
-    window.speechSynthesis.cancel();
-    const btn = document.getElementById('tts-floating-btn');
-    if (btn) btn.remove();
+    
+    // Hide toolbar when clicking outside of selection
+    document.addEventListener('mousedown', (e) => {
+        if (!toolbar.contains(e.target)) {
+            setTimeout(() => {
+                const selection = window.getSelection();
+                if (!selection.toString().trim() && !toolbar.contains(document.activeElement)) {
+                    toolbar.classList.add('hidden');
+                    toolbar.classList.remove('flex');
+                }
+            }, 10);
+        }
+    });
 }
 
 function handleTextSelection(e) {
     const selection = window.getSelection();
     const text = selection.toString().trim();
-
-    // Remove existing button
-    const existingBtn = document.getElementById('tts-floating-btn');
-    if (existingBtn) existingBtn.remove();
+    const toolbar = document.getElementById('selection-toolbar');
+    if (!toolbar) return;
 
     if (text.length > 0) {
-        // Create floating button at mouse coordinates
-        const btn = document.createElement('button');
-        btn.id = 'tts-floating-btn';
-        btn.innerHTML = '<i class="fas fa-volume-up"></i> Speak';
-        btn.className = 'fixed z-[100] bg-primary text-white px-3 py-1 rounded-full shadow-lg text-sm font-bold flex items-center gap-2 animate-bounce-short';
+        // Only show TTS if enabled
+        const btnSpeak = document.getElementById('btn-speak');
+        if (btnSpeak) btnSpeak.style.display = window.currentSettings.textToSpeech ? 'flex' : 'none';
 
-        let top = e.clientY - 40;
+        // Only show Define if it's a single word (roughly)
+        const btnDefine = document.getElementById('btn-define');
+        const isSingleWord = text.length <= 30 && !text.includes(' ') && text.length > 0;
+        if (btnDefine) btnDefine.style.display = isSingleWord ? 'flex' : 'none';
+
+        // If neither is visible, hide
+        if (!window.currentSettings.textToSpeech && !isSingleWord) {
+            toolbar.classList.add('hidden');
+            toolbar.classList.remove('flex');
+            return;
+        }
+
+        let top = e.clientY - 50;
         let left = e.clientX;
 
-        // Bounds check
         if (top < 0) top = e.clientY + 20;
-        if (left + 100 > window.innerWidth) left = window.innerWidth - 100;
+        if (left + 150 > window.innerWidth) left = window.innerWidth - 150;
 
-        btn.style.top = `${top}px`;
-        btn.style.left = `${left}px`;
+        toolbar.style.top = `${top}px`;
+        toolbar.style.left = `${left}px`;
+        toolbar.classList.remove('hidden');
+        toolbar.classList.add('flex');
 
-        btn.onclick = () => {
-            speakText(text);
-            btn.remove();
-        };
-
-        document.body.appendChild(btn);
-
-        // Auto remove after 3 seconds if not clicked
-        setTimeout(() => {
-            if (document.body.contains(btn)) btn.remove();
-        }, 3000);
+        toolbar.dataset.selectedText = text;
+        toolbar.dataset.clientX = e.clientX;
+        toolbar.dataset.clientY = e.clientY;
+    } else {
+        toolbar.classList.add('hidden');
+        toolbar.classList.remove('flex');
     }
 }
 
@@ -254,14 +295,45 @@ function speakText(text) {
 }
 
 // --- MASK MOVEMENT ---
-document.addEventListener('mousemove', (e) => {
+function updateMaskPosition(yPos) {
     if (!currentSettings.readingMask) return;
     const guide = document.getElementById('reading-guide');
     if (guide) {
-        // Center the 3rem guide on mouse Y
-        // 3rem = 48px approx. Half is 24px.
         const centerOffset = 24;
-        guide.style.top = (e.clientY - centerOffset) + 'px';
+        guide.style.top = (yPos - centerOffset) + 'px';
+    }
+}
+
+document.addEventListener('mousemove', (e) => {
+    updateMaskPosition(e.clientY);
+});
+
+// Follow keyboard focus
+document.addEventListener('focusin', (e) => {
+    if (e.target && typeof e.target.getBoundingClientRect === 'function') {
+        const rect = e.target.getBoundingClientRect();
+        const absoluteY = rect.top; // Relative to viewport, same as clientY
+        updateMaskPosition(absoluteY + (rect.height / 2));
+    }
+});
+
+// Arrow keys for basic moving without focus
+let lastMaskY = window.innerHeight / 2;
+document.addEventListener('keydown', (e) => {
+    if (!currentSettings.readingMask) return;
+    
+    // Check if the user is typing in an input, don't hijack arrows
+    if (document.activeElement && ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        return;
+    }
+
+    const step = 40;
+    if (e.key === 'ArrowUp') {
+        lastMaskY = Math.max(0, lastMaskY - step);
+        updateMaskPosition(lastMaskY);
+    } else if (e.key === 'ArrowDown') {
+        lastMaskY = Math.min(window.innerHeight, lastMaskY + step);
+        updateMaskPosition(lastMaskY);
     }
 });
 
@@ -282,11 +354,11 @@ window.syncPanelInputs = syncPanelInputs;
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         applySettings(currentSettings);
-        initDictionaryTooltip();
+        initSelectionToolbar();
     });
 } else {
     applySettings(currentSettings);
-    initDictionaryTooltip();
+    initSelectionToolbar();
 }
 
 // Listen for internal system updates
@@ -296,33 +368,23 @@ window.addEventListener('settings-changed', (e) => {
     applySettings(currentSettings);
 });
 
-// --- Double-Click Dictionary Tooltip ---
-function initDictionaryTooltip() {
-    document.addEventListener('dblclick', async (e) => {
-        // Only fetch if they double-clicked text
-        const selection = window.getSelection();
-        const word = selection.toString().trim();
+// --- Dictionary API Fetcher ---
+async function fetchDefinition(word, x, y) {
+    try {
+        const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`);
+        if (!res.ok) return; // Word not found or API error
         
-        // Don't trigger on empty or very long selections (likely not a single word)
-        if (!word || word.length > 30 || word.includes(' ')) return;
-
-        // Try to fetch definition from free dictionary API
-        try {
-            const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`);
-            if (!res.ok) return; // Word not found or API error
+        const data = await res.json();
+        if (data && data.length > 0 && data[0].meanings && data[0].meanings.length > 0) {
+            const meaning = data[0].meanings[0];
+            const def = meaning.definitions[0].definition;
+            const partOfSpeech = meaning.partOfSpeech;
             
-            const data = await res.json();
-            if (data && data.length > 0 && data[0].meanings && data[0].meanings.length > 0) {
-                const meaning = data[0].meanings[0];
-                const def = meaning.definitions[0].definition;
-                const partOfSpeech = meaning.partOfSpeech;
-                
-                showDictionaryTooltip(e.clientX, e.clientY, word, partOfSpeech, def);
-            }
-        } catch (err) {
-            console.error('Dictionary fetch failed:', err);
+            showDictionaryTooltip(x, y, word, partOfSpeech, def);
         }
-    });
+    } catch (err) {
+        console.error('Dictionary fetch failed:', err);
+    }
 }
 
 function showDictionaryTooltip(x, y, word, partOfSpeech, definition) {

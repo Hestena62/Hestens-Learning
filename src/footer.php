@@ -227,7 +227,13 @@
         // Citation
         const cb = document.getElementById('cite-gen');
         if (cb) cb.onclick = () => {
-             document.getElementById('cite-result').value = `${document.getElementById('cite-title').value || document.title}. (${new Date().getFullYear()}). Hesten's Learning.`;
+             const title = document.getElementById('cite-title').value || document.title || 'Untitled Page';
+             const url = window.location.href;
+             const date = new Date();
+             const dateString = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+             const apa = `Hesten's Learning. (${date.getFullYear()}). ${title}. Retrieved ${dateString}, from ${url}`;
+             const mla = `"${title}." Hesten's Learning. ${date.getFullYear()}, ${url}. Accessed ${dateString}.`;
+             document.getElementById('cite-result').value = `APA:\n${apa}\n\nMLA:\n${mla}`;
         };
 
         // Scroll Top

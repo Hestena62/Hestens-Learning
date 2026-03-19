@@ -306,7 +306,7 @@
         const announcements = [
             '<i class="fas fa-hammer mr-2"></i> Work in Progress: We are updating sections daily. Have question please email me at <a href="mailto:admin@hestena62.com" class="underline hover:text-blue-200">admin@hestena62.com</a>',
             '<i class="fas fa-star mr-2"></i> New Feature: You can now backup your site data directly to Google Drive in the settings menu!',
-            '<i class="fas fa-book mr-2"></i> Check out the expanded library collection with our newly added open-source titles.'
+            '<i class="fas fa-book mr-2"></i> Check out the expanded library collection with our newly added open-source titles.','<i class="fas fa-globe mr-2"></i> OpenDyslexic font is not working, I am working on it.'
         ];
         
         let currentAnnIndex = 0;

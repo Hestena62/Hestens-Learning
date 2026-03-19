@@ -3,11 +3,14 @@ tailwind.config = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["var(--site-font-family)", "Inter", "ui-sans-serif", "system-ui", "-apple-system", "sans-serif"],
+                sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "sans-serif"],
                 dyslexic: ['"Open Dyslexic"', 'sans-serif'],
                 mono: ['"Roboto Mono"', 'monospace'],
                 handwriting: ['"Cookie"', 'cursive'],
                 outfit: ['"Outfit"', 'sans-serif'],
+                inter: ['"Inter"', 'sans-serif'],
+                lexend: ['"Lexend"', 'sans-serif'],
+                comicneue: ['"Comic Neue"', 'sans-serif'],
             },
             colors: {
                 'primary': 'var(--color-primary)',
