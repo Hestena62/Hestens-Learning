@@ -1,11 +1,9 @@
 <?php
 // --- Page-Specific Variables ---
-$pageTitle        = 'Hesten\'s Learning Library';
-$pageDescription  = 'Browse your personal collection of digital books in a Netflix-style interface.';
-$pageKeywords     = 'library, books, epub, pdf, digital library, collection, education, textbooks';
-$pageAuthor       = 'Hesten\'s Learning';
-$welcomeMessage   = "Welcome to Hesten's Learning Library";
-$welcomeParagraph = "Explore our vast collection of fiction classics and comprehensive educational resources for all grade levels.";
+$pageTitle = 'Hesten\'s Learning Library';
+$pageDescription = 'Browse your personal collection of digital books in a Netflix-style interface.';
+$pageKeywords = 'library, books, epub, pdf, digital library, collection, education, textbooks';
+$pageAuthor = 'Hesten\'s Learning';
 
 // --- Book Data Array ---
 $jsonString = file_get_contents(__DIR__ . '/bookd.json');
@@ -22,7 +20,9 @@ include '../src/header.php';
 <!-- We remove the fixed hardcoded dark background so the body background from styles.css shows through. 
      We can add a subtle decorative layer that respects the theme. -->
 <div class="fixed inset-0 -z-10 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 pointer-events-none">
-    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 animate-pulse"></div>
+    <div
+        class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 animate-pulse">
+    </div>
 </div>
 
 <main id="main-content" class="min-h-screen relative z-10 font-sans pb-20">
@@ -30,11 +30,13 @@ include '../src/header.php';
     <!-- Hero Section -->
     <section class="relative pt-32 pb-12 text-center px-4">
         <div class="animate-fade-in-up">
-            <div class="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-content-bg mb-6 border shadow-xl text-primary">
+            <div
+                class="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-content-bg mb-6 border shadow-xl text-primary">
                 <i class="fas fa-book-reader text-4xl"></i>
             </div>
             <h1 class="text-5xl md:text-6xl font-black text-text-default mb-6 tracking-tight drop-shadow-md">
-                The <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Library</span>
+                The <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Library</span>
             </h1>
             <p class="text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
                 <?php echo $welcomeParagraph; ?>
@@ -42,9 +44,12 @@ include '../src/header.php';
         </div>
 
         <!-- Real-time Search and Filters -->
-        <div class="mt-12 max-w-4xl mx-auto flex flex-col md:flex-row gap-4 relative group animate-fade-in-up" style="animation-delay: 0.1s;">
-            <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-xl opacity-20 blur-lg transition duration-300"></div>
-            
+        <div class="mt-12 max-w-4xl mx-auto flex flex-col md:flex-row gap-4 relative group animate-fade-in-up"
+            style="animation-delay: 0.1s;">
+            <div
+                class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-xl opacity-20 blur-lg transition duration-300">
+            </div>
+
             <div class="relative flex-grow flex items-center bg-content-bg border rounded-xl p-2 shadow-xl">
                 <i class="fas fa-search text-text-secondary ml-4 text-lg"></i>
                 <input type="text" id="library-search" placeholder="Search title, author, or ISBN..."
@@ -52,11 +57,14 @@ include '../src/header.php';
             </div>
 
             <div class="relative flex gap-2">
-                <select id="category-filter" class="bg-content-bg border text-text-default rounded-xl px-4 py-3 shadow-xl focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
+                <select id="category-filter"
+                    class="bg-content-bg border text-text-default rounded-xl px-4 py-3 shadow-xl focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
                     <option value="all">All Categories</option>
-                    <?php foreach (array_keys($categories) as $cat) echo '<option value="'.htmlspecialchars($cat).'">'.htmlspecialchars($cat).'</option>'; ?>
+                    <?php foreach (array_keys($categories) as $cat)
+                        echo '<option value="' . htmlspecialchars($cat) . '">' . htmlspecialchars($cat) . '</option>'; ?>
                 </select>
-                <select id="sort-filter" class="bg-content-bg border text-text-default rounded-xl px-4 py-3 shadow-xl focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
+                <select id="sort-filter"
+                    class="bg-content-bg border text-text-default rounded-xl px-4 py-3 shadow-xl focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
                     <option value="default">Default Order</option>
                     <option value="title-asc">Title (A-Z)</option>
                     <option value="author-asc">Author (A-Z)</option>
@@ -68,7 +76,7 @@ include '../src/header.php';
     <!-- Library Content -->
     <div class="container mx-auto px-4 md:px-8 space-y-16">
 
-        <?php foreach ($categories as $categoryName => $books) : ?>
+        <?php foreach ($categories as $categoryName => $books): ?>
             <section class="library-category animate-fade-in-up">
                 <div class="flex items-center gap-4 mb-8">
                     <h2 class="text-2xl font-bold text-text-default border-l-4 border-primary pl-4">
@@ -76,10 +84,14 @@ include '../src/header.php';
                     </h2>
                     <div class="h-px bg-text-secondary/20 flex-grow"></div>
                     <div class="flex gap-2">
-                        <button class="scroll-btn left rounded-full w-8 h-8 flex items-center justify-center bg-content-bg border hover:bg-primary hover:text-white transition-colors text-text-secondary shadow-sm" aria-label="Scroll left">
+                        <button
+                            class="scroll-btn left rounded-full w-8 h-8 flex items-center justify-center bg-content-bg border hover:bg-primary hover:text-white transition-colors text-text-secondary shadow-sm"
+                            aria-label="Scroll left">
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <button class="scroll-btn right rounded-full w-8 h-8 flex items-center justify-center bg-content-bg border hover:bg-primary hover:text-white transition-colors text-text-secondary shadow-sm" aria-label="Scroll right">
+                        <button
+                            class="scroll-btn right rounded-full w-8 h-8 flex items-center justify-center bg-content-bg border hover:bg-primary hover:text-white transition-colors text-text-secondary shadow-sm"
+                            aria-label="Scroll right">
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
@@ -87,7 +99,7 @@ include '../src/header.php';
 
                 <!-- Horizontal Scroll Container -->
                 <div class="flex overflow-x-auto gap-6 pb-8 pt-2 scrollbar-hide snap-x book-container">
-                    <?php foreach ($books as $book) : ?>
+                    <?php foreach ($books as $book): ?>
                         <!-- Book Card -->
                         <div class="book-card flex-shrink-0 w-48 md:w-56 snap-start group cursor-pointer relative"
                             onclick="openModal(this)" data-title="<?php echo htmlspecialchars($book['title']); ?>"
@@ -105,16 +117,18 @@ include '../src/header.php';
                             data-lexile="<?php echo htmlspecialchars($book['lexile'] ?? ''); ?>">
 
                             <!-- Cover Image Wrapper -->
-                            <div class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-2 border">
+                            <div
+                                class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-2 border">
                                 <img src="<?php echo htmlspecialchars($book['img']); ?>"
-                                    alt="<?php echo htmlspecialchars($book['title']); ?>" 
-                                    class="w-full h-full object-cover"
+                                    alt="<?php echo htmlspecialchars($book['title']); ?>" class="w-full h-full object-cover"
                                     loading="lazy"
                                     onerror="this.onerror=null; this.src='<?php echo isset($book['fallback-img']) ? htmlspecialchars($book['fallback-img']) : 'https://placehold.co/300x450/6b7280/white?text=Image+Not+Found'; ?>';">
 
                                 <!-- Hover Overlay -->
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                                    <span class="text-white text-xs font-bold uppercase tracking-wider mb-1"><i class="fas fa-book-open mr-1"></i> View Details</span>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                                    <span class="text-white text-xs font-bold uppercase tracking-wider mb-1"><i
+                                            class="fas fa-book-open mr-1"></i> View Details</span>
                                 </div>
                             </div>
 
@@ -146,8 +160,7 @@ include '../src/header.php';
 <!-- Book Modal -->
 <div id="bookModal"
     class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"
-    role="dialog" aria-modal="true" aria-labelledby="modal-title"
-    onclick="closeModal()">
+    role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="closeModal()">
     <div class="bg-content-bg border rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4 relative flex flex-col md:flex-row overflow-hidden"
         onclick="event.stopPropagation()">
 
@@ -198,21 +211,28 @@ include '../src/header.php';
                     </a>
 
                     <div class="flex gap-2">
-                        <a id="modal-pdf-link" href="#" class="bg-base-bg hover:bg-primary/10 text-text-default p-3 rounded-xl border transition-colors tooltip-btn" title="Download PDF">
+                        <a id="modal-pdf-link" href="#"
+                            class="bg-base-bg hover:bg-primary/10 text-text-default p-3 rounded-xl border transition-colors tooltip-btn"
+                            title="Download PDF">
                             <i class="fas fa-file-pdf text-red-500"></i>
                         </a>
-                        <a id="modal-epub-link" href="#" class="bg-base-bg hover:bg-primary/10 text-text-default p-3 rounded-xl border transition-colors tooltip-btn" title="Download ePUB">
+                        <a id="modal-epub-link" href="#"
+                            class="bg-base-bg hover:bg-primary/10 text-text-default p-3 rounded-xl border transition-colors tooltip-btn"
+                            title="Download ePUB">
                             <i class="fas fa-book text-blue-500"></i>
                         </a>
-                        <a id="modal-mobi-link" href="#" class="bg-base-bg hover:bg-primary/10 text-text-default p-3 rounded-xl border transition-colors tooltip-btn" title="Download MOBI">
+                        <a id="modal-mobi-link" href="#"
+                            class="bg-base-bg hover:bg-primary/10 text-text-default p-3 rounded-xl border transition-colors tooltip-btn"
+                            title="Download MOBI">
                             <i class="fas fa-tablet-alt text-orange-500"></i>
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Disclaimer Button -->
                 <div class="flex self-start">
-                    <button onclick="openDisclaimerModal()" class="text-sm text-text-secondary hover:text-primary transition-colors flex items-center gap-1">
+                    <button onclick="openDisclaimerModal()"
+                        class="text-sm text-text-secondary hover:text-primary transition-colors flex items-center gap-1">
                         <i class="fas fa-exclamation-circle text-yellow-500"></i> View Disclaimer
                     </button>
                 </div>
@@ -224,25 +244,27 @@ include '../src/header.php';
 <!-- Disclaimer Modal -->
 <div id="disclaimerModal"
     class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"
-    role="alertdialog" aria-modal="true"
-    onclick="closeDisclaimerModal()">
+    role="alertdialog" aria-modal="true" onclick="closeDisclaimerModal()">
     <div class="bg-content-bg border rounded-2xl shadow-2xl w-full max-w-md p-6 m-4 relative"
         onclick="event.stopPropagation()">
-        
+
         <button onclick="closeDisclaimerModal()" id="disclaimer-modal-close"
             class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-base-bg text-text-default hover:bg-primary hover:text-white transition-colors flex items-center justify-center border shadow-sm">
             <i class="fas fa-times"></i>
         </button>
-        
+
         <div class="text-center mb-4">
             <i class="fas fa-exclamation-triangle text-4xl text-yellow-500 mb-2"></i>
             <h3 class="text-2xl font-bold text-text-default">Disclaimer</h3>
         </div>
         <p class="text-text-secondary text-sm leading-relaxed mb-6 text-center">
-            The books and materials in this digital library are provided for educational and informational purposes only. Hesten's Learning makes no claims of ownership over third-party content. Please ensure your use of these materials complies with applicable copyright laws before downloading.
+            The books and materials in this digital library are provided for educational and informational purposes
+            only. Hesten's Learning makes no claims of ownership over third-party content. Please ensure your use of
+            these materials complies with applicable copyright laws before downloading.
         </p>
         <div class="flex justify-center">
-            <button onclick="closeDisclaimerModal()" class="bg-gradient-to-r from-primary to-secondary text-white py-2 px-6 rounded-xl font-bold shadow-lg hover:opacity-90 transition-opacity">
+            <button onclick="closeDisclaimerModal()"
+                class="bg-gradient-to-r from-primary to-secondary text-white py-2 px-6 rounded-xl font-bold shadow-lg hover:opacity-90 transition-opacity">
                 I Understand
             </button>
         </div>
@@ -278,7 +300,7 @@ include '../src/header.php';
                     }
                     return 0;
                 });
-                
+
                 // Re-append to DOM for sorting
                 books.forEach(book => bookContainer.appendChild(book));
             }
@@ -289,7 +311,7 @@ include '../src/header.php';
                 const title = book.dataset.title.toLowerCase();
                 const author = book.dataset.author.toLowerCase();
                 const isbn = book.dataset.isbn.toLowerCase();
-                
+
                 const matchesSearch = title.includes(term) || author.includes(term) || isbn.includes(term);
                 const matchesCategory = selectedCat === 'all' || selectedCat === catName;
 
@@ -323,7 +345,7 @@ include '../src/header.php';
         clearTimeout(timeout);
         timeout = setTimeout(filterAndSortBooks, 300);
     });
-    
+
     categoryFilter.addEventListener('change', filterAndSortBooks);
     sortFilter.addEventListener('change', filterAndSortBooks);
 
@@ -332,8 +354,8 @@ include '../src/header.php';
         const container = category.querySelector('.book-container');
         const leftBtn = category.querySelector('.scroll-btn.left');
         const rightBtn = category.querySelector('.scroll-btn.right');
-        
-        if(leftBtn && rightBtn && container) {
+
+        if (leftBtn && rightBtn && container) {
             const scrollAmount = 400; // Scroll amount in px
             leftBtn.addEventListener('click', () => {
                 container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });

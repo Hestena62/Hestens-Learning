@@ -536,6 +536,32 @@
             "epub-link": "https://www.gutenberg.org/ebooks/1399",
             "read-online-link": "#",
             "lexile": "1100L"
+        },
+        {
+            "id": "tale-of-two-cities",
+            "title": "A Tale of Two Cities",
+            "author": "Charles Dickens",
+            "isbn": "978-0141439600",
+            "date": "1859-11-26",
+            "img": "https://covers.openlibrary.org/b/isbn/9780141439600-L.jpg",
+            "description": "A novel set in London and Paris before and during the French Revolution, depicting the plight of the French peasantry.",
+            "pdf-link": "https://www.gutenberg.org/ebooks/98",
+            "epub-link": "https://www.gutenberg.org/ebooks/98",
+            "read-online-link": "#",
+            "lexile": "1190L"
+        },
+        {
+            "id": "scarlet-letter",
+            "title": "The Scarlet Letter",
+            "author": "Nathaniel Hawthorne",
+            "isbn": "978-0142437261",
+            "date": "1850-03-16",
+            "img": "https://covers.openlibrary.org/b/isbn/9780142437261-L.jpg",
+            "description": "Set in 17th-century Puritan Massachusetts, it tells the story of Hester Prynne, who conceives a daughter through an affair and struggles to create a new life of repentance and dignity.",
+            "pdf-link": "https://www.gutenberg.org/ebooks/25344",
+            "epub-link": "https://www.gutenberg.org/ebooks/25344",
+            "read-online-link": "#",
+            "lexile": "1340L"
         }
     ],
     "Horror & Gothic": [
@@ -856,6 +882,32 @@
             "epub-link": "https://www.gutenberg.org/ebooks/996",
             "read-online-link": "#",
             "lexile": "1300L"
+        },
+        {
+            "id": "hound-of-baskervilles",
+            "title": "The Hound of the Baskervilles",
+            "author": "Arthur Conan Doyle",
+            "isbn": "978-0140437867",
+            "date": "1902-04-01",
+            "img": "https://covers.openlibrary.org/b/isbn/9780140437867-L.jpg",
+            "description": "Sherlock Holmes and Dr. Watson investigate the legend of a supernatural hound, a beast that may be stalking a young heir on the fog-shrouded moorland.",
+            "pdf-link": "https://www.gutenberg.org/ebooks/2852",
+            "epub-link": "https://www.gutenberg.org/ebooks/2852",
+            "read-online-link": "#",
+            "lexile": "1090L"
+        },
+        {
+            "id": "white-fang",
+            "title": "White Fang",
+            "author": "Jack London",
+            "isbn": "978-0140390599",
+            "date": "1906-05-01",
+            "img": "https://covers.openlibrary.org/b/isbn/9780140390599-L.jpg",
+            "description": "The story of a wild wolfdog's journey to domestication in Yukon Territory, exploring themes of morality and redemption.",
+            "pdf-link": "https://www.gutenberg.org/ebooks/914",
+            "epub-link": "https://www.gutenberg.org/ebooks/914",
+            "read-online-link": "#",
+            "lexile": "970L"
         }
     ],
     "Philosophy & Thought": [
@@ -923,6 +975,19 @@
             "epub-link": "https://www.gutenberg.org/ebooks/205",
             "read-online-link": "#",
             "lexile": "1340L"
+        },
+        {
+            "id": "beyond-good-and-evil",
+            "title": "Beyond Good and Evil",
+            "author": "Friedrich Nietzsche",
+            "isbn": "978-0140449232",
+            "date": "1886-01-01",
+            "img": "https://covers.openlibrary.org/b/isbn/9780140449232-L.jpg",
+            "description": "A comprehensive overview of Nietzsche's philosophy, criticizing past philosophers for their uncritical acceptance of dogmatic premises and their grounding of morality in a dichotomy of good and evil.",
+            "pdf-link": "https://www.gutenberg.org/ebooks/4363",
+            "epub-link": "https://www.gutenberg.org/ebooks/4363",
+            "read-online-link": "#",
+            "lexile": "1450L"
         }
     ]
 }

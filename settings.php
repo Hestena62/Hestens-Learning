@@ -379,7 +379,7 @@ include 'src/header.php';
                     class="text-2xl font-bold text-text-default mb-6 flex items-center border-b border-gray-200 dark:border-gray-700 pb-3">
                     Data & Reset
                 </h2>
-                <div class="flex flex-col sm:flex-row gap-4">
+                <div class="mb-8 flex flex-col sm:flex-row gap-4">
                     <button onclick="localStorage.removeItem('hl_accessibility_settings'); window.location.reload();"
                         class="flex-1 bg-red-100 hover:bg-red-200 text-red-700 font-bold py-4 px-6 rounded-2xl transition-colors border border-red-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2">
                         <i class="fas fa-undo"></i> Reset to Defaults
@@ -389,6 +389,26 @@ include 'src/header.php';
                         class="flex-1 bg-base-bg hover:bg-gray-200 text-text-default font-bold py-4 px-6 rounded-2xl transition-colors border border-gray-300 dark:border-gray-600 shadow-sm hover:shadow-md flex items-center justify-center gap-2">
                         <i class="fas fa-download"></i> Export Settings
                     </button>
+                </div>
+
+                <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
+                    <h3 class="text-xl font-bold text-text-default mb-3 flex items-center">
+                        <i class="fab fa-google-drive text-[#1FA463] mr-3"></i> Google Drive Cloud Sync
+                    </h3>
+                    <p class="text-text-secondary mb-4 text-sm font-medium">
+                        Take full control of your data. Connect your Google account to securely backup and sync all your 
+                        site data directly to your own personal Google Drive, keeping it completely private from our servers.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button id="gdrive-save-btn" onclick="saveToGoogleDrive()" disabled
+                            class="flex-1 bg-green-50 hover:bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400 font-bold py-4 px-6 rounded-2xl transition-colors border border-green-200 dark:border-green-800 shadow-sm hover:shadow-md flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fas fa-cloud-upload-alt"></i> Backup to Drive
+                        </button>
+                        <button id="gdrive-load-btn" onclick="loadFromGoogleDrive()" disabled
+                            class="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 font-bold py-4 px-6 rounded-2xl transition-colors border border-blue-200 dark:border-blue-800 shadow-sm hover:shadow-md flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fas fa-cloud-download-alt"></i> Restore from Drive
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -424,7 +444,203 @@ include 'src/header.php';
 
 </main>
 
+<!-- Google API Scripts -->
+<script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+<script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+
 <script>
+    // --- GOOGLE DRIVE SYNC LOGIC ---
+    // IMPORTANT: Replace 'YOUR_GOOGLE_CLIENT_ID_HERE' with your actual Google Cloud Project Client ID for this to work natively!
+    const CLIENT_ID = '988211241767-n13gda92d0t48la0ibou2jl5cir723nc.apps.googleusercontent.com'; 
+    const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
+    const SCOPES = 'https://www.googleapis.com/auth/drive.file'; // drive.file scope so users can actually see the file in their Drive
+
+    let tokenClient;
+    let gapiInited = false;
+    let gisInited = false;
+
+    function gapiLoaded() {
+        gapi.load('client', initializeGapiClient);
+    }
+
+    async function initializeGapiClient() {
+        await gapi.client.init({
+            discoveryDocs: DISCOVERY_DOCS,
+        });
+        gapiInited = true;
+        maybeEnableButtons();
+    }
+
+    function gisLoaded() {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+            client_id: CLIENT_ID,
+            scope: SCOPES,
+            callback: '', // defined at request time
+        });
+        gisInited = true;
+        maybeEnableButtons();
+    }
+
+    function maybeEnableButtons() {
+        if (gapiInited && gisInited) {
+            document.getElementById('gdrive-save-btn').disabled = false;
+            document.getElementById('gdrive-load-btn').disabled = false;
+        }
+    }
+
+    function getAllSiteData() {
+        let data = {};
+        for (let i = 0; i < localStorage.length; i++) {
+            let key = localStorage.key(i);
+            data[key] = localStorage.getItem(key);
+        }
+        return JSON.stringify(data);
+    }
+
+    function restoreSiteData(jsonString) {
+        try {
+            let data = typeof jsonString === 'string' ? JSON.parse(jsonString) : jsonString;
+            for (let key in data) {
+                localStorage.setItem(key, data[key]);
+            }
+            alert('Data restored successfully from Google Drive! The page will now reload.');
+            window.location.reload();
+        } catch (e) {
+            alert('Error parsing site data from Drive.');
+            console.error(e);
+        }
+    }
+
+    async function saveToGoogleDrive() {
+        if (CLIENT_ID === 'YOUR_GOOGLE_CLIENT_ID_HERE') {
+            alert('Setup Required: Please edit settings.php and replace YOUR_GOOGLE_CLIENT_ID_HERE with a valid Google Client ID from the Google Cloud Console.');
+            return;
+        }
+        
+        tokenClient.callback = async (resp) => {
+            if (resp.error !== undefined) {
+                console.error(resp);
+                return;
+            }
+            try {
+                // Show loading state
+                const saveBtn = document.getElementById('gdrive-save-btn');
+                const originalText = saveBtn.innerHTML;
+                saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+                saveBtn.disabled = true;
+
+                let fileContent = getAllSiteData();
+                const accessToken = gapi.client.getToken().access_token;
+
+                // 1. Check if file already exists in user's drive
+                const response = await gapi.client.drive.files.list({
+                    fields: 'files(id, name)',
+                    pageSize: 10,
+                    q: "name='hestens_learning_data.json' and trashed=false"
+                });
+                const files = response.result.files;
+                
+                let fileId;
+
+                if (files && files.length > 0) {
+                    fileId = files[0].id;
+                } else {
+                    // 2. Create the file metadata first
+                    const metaResponse = await fetch('https://www.googleapis.com/drive/v3/files', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + accessToken,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: 'hestens_learning_data.json'
+                        })
+                    });
+                    const metaData = await metaResponse.json();
+                    fileId = metaData.id;
+                }
+
+                // 3. Upload the content to the fileId
+                await fetch('https://www.googleapis.com/upload/drive/v3/files/' + fileId + '?uploadType=media', {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': 'Bearer ' + accessToken,
+                        'Content-Type': 'application/json'
+                    },
+                    body: fileContent
+                });
+                
+                saveBtn.innerHTML = originalText;
+                saveBtn.disabled = false;
+                alert('Site data backed up to your Google Drive seamlessly! You should see hestens_learning_data.json in your Drive.');
+            } catch (err) {
+                alert('Error saving to Google Drive: ' + err.message);
+                console.error(err);
+                const saveBtn = document.getElementById('gdrive-save-btn');
+                saveBtn.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Backup to Drive';
+                saveBtn.disabled = false;
+            }
+        };
+
+        if (gapi.client.getToken() === null) {
+            tokenClient.requestAccessToken({prompt: 'consent'});
+        } else {
+            tokenClient.requestAccessToken({prompt: ''});
+        }
+    }
+
+    async function loadFromGoogleDrive() {
+        if (CLIENT_ID === 'YOUR_GOOGLE_CLIENT_ID_HERE') {
+            alert('Setup Required: Please edit settings.php and replace YOUR_GOOGLE_CLIENT_ID_HERE with a valid Google Client ID from the Google Cloud Console.');
+            return;
+        }
+
+        tokenClient.callback = async (resp) => {
+            if (resp.error !== undefined) {
+                console.error(resp);
+                return;
+            }
+            try {
+                // Show loading state
+                const loadBtn = document.getElementById('gdrive-load-btn');
+                const originalText = loadBtn.innerHTML;
+                loadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                loadBtn.disabled = true;
+
+                const response = await gapi.client.drive.files.list({
+                    fields: 'files(id, name)',
+                    pageSize: 10,
+                    q: "name='hestens_learning_data.json' and trashed=false"
+                });
+                const files = response.result.files;
+                
+                if (files && files.length > 0) {
+                    const fileResponse = await gapi.client.drive.files.get({
+                        fileId: files[0].id,
+                        alt: 'media'
+                    });
+                    restoreSiteData(fileResponse.body);
+                } else {
+                    alert('No saved data found in your Google Drive. Try backing it up first!');
+                }
+                loadBtn.innerHTML = originalText;
+                loadBtn.disabled = false;
+            } catch (err) {
+                alert('Error loading from Google Drive: ' + err.message);
+                console.error(err);
+                const loadBtn = document.getElementById('gdrive-load-btn');
+                loadBtn.innerHTML = '<i class="fas fa-cloud-download-alt"></i> Restore from Drive';
+                loadBtn.disabled = false;
+            }
+        };
+
+        if (gapi.client.getToken() === null) {
+            tokenClient.requestAccessToken({prompt: 'consent'});
+        } else {
+            tokenClient.requestAccessToken({prompt: ''});
+        }
+    }
+
     // --- SETTINGS PAGE SYNC LOGIC ---
 
     function syncPageUI(s) {
