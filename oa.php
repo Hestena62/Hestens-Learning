@@ -1,156 +1,65 @@
-<!DOCTYPE html>
-<html lang="en-US" class="scroll-smooth">
+<?php 
+$pageTitle = "Open Access Journal";
+include 'src/header.php'; 
+?>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hesten's Learning - Open Access Journal</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/JS/tailwind-config.js"></script>
-    <!-- Assuming this exists from header.php reference, otherwise Tailwind default is fine -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#4F46E5', // Indigo 600
-                        secondary: '#8B5CF6', // Violet 500
-                        accent: '#F43F5E', // Rose 500
-                        'content-bg': '#ffffff',
-                        'base-bg': '#f3f4f6',
-                        'text-default': '#1f2937',
-                        'text-secondary': '#6b7280'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Merriweather', 'serif'],
-                    }
-                }
-            },
-            darkMode: 'class'
-        }
-    </script>
+<style>
+    .paper-texture {
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
 
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;700;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
-    <style>
-        .glass-header {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    /* PRINT STYLES */
+    @media print {
+        #reader-view {
+            position: static;
+            background: white;
+            width: 100%;
+            height: auto;
+            overflow: visible;
         }
 
-        .paper-texture {
-            background-color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        #reader-view>div {
+            padding: 0;
         }
 
-        .line-clamp-3 {
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        #reader-view .bg-white {
+            box-shadow: none;
+            max-width: 100%;
         }
 
-        /* PRINT STYLES */
-        @media print {
-            body {
-                background: white;
-                color: black;
-            }
-
-            header,
-            .glass-header,
-            footer,
-            #fixed-tools-container,
-            #toast,
-            #citation-modal,
-            #main-view>div:first-child,
-            aside {
-                display: none !important;
-            }
-
-            #reader-view {
-                position: static;
-                background: white;
-                width: 100%;
-                height: auto;
-                overflow: visible;
-            }
-
-            #reader-view>div {
-                padding: 0;
-            }
-
-            #reader-view .bg-white {
-                box-shadow: none;
-                max-width: 100%;
-            }
-
-            .prose {
-                max-width: 100%;
-                font-size: 12pt;
-                line-height: 1.5;
-            }
-
-            #article-content {
-                margin: 0;
-                padding: 2cm;
-            }
-
-            /* Ensure article is visible if hidden */
-            #reader-view {
-                display: block !important;
-            }
-
-            #main-view {
-                display: none;
-            }
-
-            /* Hide main list when printing article */
+        .prose {
+            max-width: 100%;
+            font-size: 12pt;
+            line-height: 1.5;
         }
-    </style>
-</head>
 
-<body class="bg-base-bg text-text-default font-sans antialiased selection:bg-primary selection:text-white">
+        #article-content {
+            margin: 0;
+            padding: 2cm;
+        }
 
-    <!-- STATIC HEADER (Copied & Simplified from src/header.php) -->
-    <header class="glass-header sticky top-0 z-40 transition-colors duration-300 print:hidden shadow-sm">
-        <div class="container mx-auto px-4 py-3">
-            <nav class="flex items-center justify-between flex-wrap">
-                <a class="flex items-center flex-shrink-0 text-primary mr-8 group" href="/">
-                    <div
-                        class="h-10 w-10 mr-3 bg-gradient-to-br from-primary to-secondary text-white rounded-xl flex items-center justify-center font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform">
-                        H</div>
-                    <span class="font-bold text-xl tracking-tight text-text-default">Hesten's Learning</span>
-                </a>
+        /* Ensure article is visible if hidden */
+        #reader-view {
+            display: block !important;
+        }
 
-                <!-- Desktop Nav -->
-                <div class="hidden lg:flex lg:items-center lg:w-auto gap-6 ml-auto">
-                    <div class="text-sm flex gap-8 font-medium">
-                        <a href="/" class="text-text-default hover:text-primary transition-colors"><i
-                                class="fas fa-home mr-1"></i> Home</a>
-                        <a href="/research.php" class="text-text-default hover:text-primary transition-colors"><i
-                                class="fas fa-microscope mr-1"></i> Research</a>
-                        <a href="/library" class="text-text-default hover:text-primary transition-colors"><i
-                                class="fas fa-book-open mr-1"></i> Library</a>
-                    </div>
-                    <a href="#"
-                        class="bg-primary text-white px-5 py-2 rounded-full font-bold text-sm shadow-md hover:bg-secondary transition-colors">Sign
-                        In</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+        #main-view {
+            display: none;
+        }
+    }
+</style>
 
-    <!-- NEW HERO SECTION -->
+<!-- NEW HERO SECTION -->
     <div
         class="relative bg-gradient-to-br from-sky-600 via-blue-600 to-indigo-700 text-white pt-20 pb-24 px-4 rounded-b-[2.5rem] shadow-2xl overflow-hidden mb-12 border-b border-white/10">
         <!-- Animated Background Elements -->
@@ -325,31 +234,36 @@
         </div>
     </div>
 
-    <!-- Notification Toast -->
-    <div id="toast"
-        class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl transform translate-y-24 transition-all duration-300 z-[70] flex items-center gap-3">
-        <i class="fas fa-info-circle text-sky-400"></i>
-        <span id="toast-msg">Notification</span>
+    
+<!-- CITATION MODAL -->
+    <div id="citation-modal"
+        class="hidden fixed inset-0 z-[80] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-md w-full animate-in zoom-in duration-200">
+            <h3 class="text-lg font-bold text-gray-900 mb-4">Cite Article</h3>
+            <div class="space-y-3">
+                <button onclick="app.copyCitation()"
+                    class="w-full flex items-center justify-between p-3 rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-primary transition-colors text-left group">
+                    <span class="font-bold text-gray-700 group-hover:text-primary">APA Style (Copy)</span>
+                    <i class="fas fa-copy text-gray-400 group-hover:text-primary"></i>
+                </button>
+                <button onclick="app.downloadCitation('bib')"
+                    class="w-full flex items-center justify-between p-3 rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-primary transition-colors text-left group">
+                    <span class="font-bold text-gray-700 group-hover:text-primary">BibTeX (.bib)</span>
+                    <i class="fas fa-download text-gray-400 group-hover:text-primary"></i>
+                </button>
+                <button onclick="app.downloadCitation('ris')"
+                    class="w-full flex items-center justify-between p-3 rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-primary transition-colors text-left group">
+                    <span class="font-bold text-gray-700 group-hover:text-primary">RIS (.ris)</span>
+                    <i class="fas fa-download text-gray-400 group-hover:text-primary"></i>
+                </button>
+            </div>
+            <button onclick="app.closeCitation()"
+                class="mt-6 w-full py-2 text-sm font-bold text-gray-500 hover:text-gray-900">Close</button>
+        </div>
     </div>
 
-    <!-- STATIC FOOTER (Copied from src/footer.php) -->
-    <footer class="bg-white pt-16 pb-8 border-t border-gray-200 mt-24">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-text-secondary">
-                <div class="mb-4 md:mb-0">
-                    <span class="font-bold text-text-default">Hesten's Learning</span> &copy; 2025.
-                </div>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-primary transition-colors">Privacy</a>
-                    <a href="#" class="hover:text-primary transition-colors">Terms</a>
-                    <a href="#" class="hover:text-primary transition-colors">Contact</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- SCRIPTS -->
-    <script>
+    
+<script>
         // --- DATA ---
         const journalDatabase = [
             {
@@ -434,6 +348,16 @@
                 this.renderTopics();
                 this.renderArticles();
                 lucide.createIcons();
+                
+                // Deep Linking
+                const params = new URLSearchParams(window.location.search);
+                const articleId = params.get('id');
+                if (articleId) {
+                    const article = this.state.articles.find(a => a.id === articleId);
+                    if (article) {
+                        this.openReader(articleId);
+                    }
+                }
             },
 
             renderArticles() {
@@ -503,8 +427,10 @@
             },
 
             renderTopics() {
-                // Simplified categories for UI
-                const topics = ['All', 'Physics', 'Biology', 'Computer Science', 'Environmental'];
+                // Generate topics dynamically from the database
+                const topicsSet = new Set(['All']);
+                this.state.articles.forEach(a => topicsSet.add(a.category));
+                const topics = Array.from(topicsSet);
                 const container = document.getElementById('topic-filters');
 
                 container.innerHTML = topics.map(topic => `
@@ -548,6 +474,7 @@
 
             openReader(id) {
                 const article = this.state.articles.find(a => a.id === id);
+                this.state.currentArticle = article;
                 document.getElementById('article-content').innerHTML = `
                     <div class="text-center border-b border-gray-200 pb-10 mb-10">
                          <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wider mb-6">${article.category}</span>
@@ -566,11 +493,18 @@
                 document.getElementById('reader-view').classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
                 lucide.createIcons();
+                
+                // Update URL for sharing
+                const newUrl = window.location.pathname + '?id=' + encodeURIComponent(id);
+                window.history.pushState({id: id}, '', newUrl);
             },
 
             closeReader() {
                 document.getElementById('reader-view').classList.add('hidden');
                 document.body.style.overflow = '';
+                
+                // Revert URL
+                window.history.pushState({}, '', window.location.pathname);
             },
 
             citeArticle() {
@@ -635,7 +569,7 @@ ER  -`;
             shareArticle(platform) {
                 if (!this.state.currentArticle) return;
                 const a = this.state.currentArticle;
-                const url = window.location.href; // In real app, this would be article specific URL
+                const url = window.location.origin + window.location.pathname + '?id=' + encodeURIComponent(a.id);
                 const text = `Check out "${a.title}" on Hesten's Learning!`;
 
                 let shareUrl = '';
@@ -653,10 +587,11 @@ ER  -`;
             },
 
             showToast(msg) {
-                const t = document.getElementById('toast');
-                document.getElementById('toast-msg').innerText = msg;
-                t.classList.remove('translate-y-24');
-                setTimeout(() => t.classList.add('translate-y-24'), 3000);
+                if (window.showMessageBox) {
+                    window.showMessageBox(msg);
+                } else {
+                    alert(msg);
+                }
             }
         };
 
@@ -670,119 +605,5 @@ ER  -`;
             });
         }, 50);
     </script>
-    <script src="/JS/a11y.js"></script>
 
-    <!-- CITATION MODAL -->
-    <div id="citation-modal"
-        class="hidden fixed inset-0 z-[80] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-md w-full animate-in zoom-in duration-200">
-            <h3 class="text-lg font-bold text-gray-900 mb-4">Cite Article</h3>
-            <div class="space-y-3">
-                <button onclick="app.copyCitation()"
-                    class="w-full flex items-center justify-between p-3 rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-primary transition-colors text-left group">
-                    <span class="font-bold text-gray-700 group-hover:text-primary">APA Style (Copy)</span>
-                    <i class="fas fa-copy text-gray-400 group-hover:text-primary"></i>
-                </button>
-                <button onclick="app.downloadCitation('bib')"
-                    class="w-full flex items-center justify-between p-3 rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-primary transition-colors text-left group">
-                    <span class="font-bold text-gray-700 group-hover:text-primary">BibTeX (.bib)</span>
-                    <i class="fas fa-download text-gray-400 group-hover:text-primary"></i>
-                </button>
-                <button onclick="app.downloadCitation('ris')"
-                    class="w-full flex items-center justify-between p-3 rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-primary transition-colors text-left group">
-                    <span class="font-bold text-gray-700 group-hover:text-primary">RIS (.ris)</span>
-                    <i class="fas fa-download text-gray-400 group-hover:text-primary"></i>
-                </button>
-            </div>
-            <button onclick="app.closeCitation()"
-                class="mt-6 w-full py-2 text-sm font-bold text-gray-500 hover:text-gray-900">Close</button>
-        </div>
-    </div>
-
-    <!-- Fixed Tools Container -->
-    <div id="fixed-tools-container" class="fixed bottom-6 right-6 z-[60] flex flex-col gap-3 items-end print:hidden">
-        <button id="scroll-to-top"
-            class="w-12 h-12 bg-white backdrop-blur border border-gray-200 dark:border-gray-700 text-primary rounded-full shadow-lg hover:scale-110 focus:outline-none transition-all duration-300 transform translate-y-24 opacity-0 flex items-center justify-center type=button"><i
-                class="fas fa-arrow-up"></i></button>
-        <button id="a11y-toggle-button"
-            class="w-14 h-14 bg-primary text-white rounded-full shadow-2xl hover:bg-secondary transition-all transform hover:scale-105 flex items-center justify-center animate-bounce-short"
-            type="button"><i class="fas fa-universal-access text-2xl"></i></button>
-    </div>
-
-    <!-- A11y Panel -->
-    <div id="a11y-settings-panel"
-        class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-2xl z-[70] transform translate-x-full transition-transform duration-300 overflow-y-auto p-6 border-l border-gray-200">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-primary flex items-center gap-2"><i class="fas fa-sliders-h"></i>
-                Settings</h2>
-            <button id="a11y-close-button" class="text-text-secondary hover:text-text-default p-2"><i
-                    class="fas fa-times text-xl"></i></button>
-        </div>
-        <div class="space-y-6">
-            <div>
-                <h3 class="font-bold text-text-secondary mb-2 uppercase text-xs">Theme</h3>
-                <div class="grid grid-cols-2 gap-2">
-                    <button class="p-2 border rounded bg-gray-50 text-black hover:border-primary"
-                        onclick="updateGlobalSetting('theme', 'light')">Light</button>
-                    <button class="p-2 border rounded bg-gray-900 text-white hover:border-primary"
-                        onclick="updateGlobalSetting('theme', 'dark')">Dark</button>
-                    <button class="p-2 border rounded bg-black text-yellow-300 hover:border-yellow-400"
-                        onclick="updateGlobalSetting('theme', 'high-contrast')">Contrast</button>
-                    <button class="p-2 border rounded bg-[#f4ecd8] text-[#433422] hover:border-amber-600"
-                        onclick="updateGlobalSetting('theme', 'sepia')">Sepia</button>
-                    <button class="col-span-2 p-2 border rounded bg-[#011627] text-[#d6deeb] hover:border-blue-400"
-                        onclick="updateGlobalSetting('theme', 'midnight')">Midnight</button>
-                </div>
-            </div>
-            <div>
-                <h3 class="font-bold text-text-secondary mb-2 uppercase text-xs">Font</h3>
-                <select id="panel-font" onchange="updateGlobalSetting('fontFamily', this.value)"
-                    class="w-full p-2 rounded bg-gray-50 border text-text-default">
-                    <option value="Outfit">Outfit (Modern)</option>
-                    <option value="Inter">Inter (Standard)</option>
-                    <option value="Open Dyslexic">Open Dyslexic</option>
-                    <option value="Lexend">Lexend</option>
-                    <option value="Comic Neue">Comic Neue</option>
-                    <option value="Roboto Mono">Monospace</option>
-                </select>
-            </div>
-            <div>
-                <label class="block text-xs font-bold text-text-default mb-1">Text Size</label>
-                <input type="range" id="panel-size" class="w-full accent-primary" min="0.8" max="2.0" step="0.1"
-                    oninput="updateGlobalSetting('fontSize', this.value)">
-            </div>
-            <div>
-                <label class="block text-xs font-bold text-text-default mb-1">Line Height</label>
-                <input type="range" id="panel-line" class="w-full accent-primary" min="1.0" max="2.5" step="0.1"
-                    oninput="updateGlobalSetting('lineHeight', this.value)">
-            </div>
-            <div class="space-y-3">
-                <label class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                    <span class="text-sm font-bold text-text-default">Reading Mask</span>
-                    <input type="checkbox" id="panel-mask" onchange="updateGlobalSetting('readingMask', this.checked)"
-                        class="accent-primary">
-                </label>
-                <label class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                    <span class="text-sm font-bold text-text-default">Large Cursor</span>
-                    <input type="checkbox" id="panel-cursor"
-                        onchange="updateGlobalSetting('cursorSize', this.checked ? 'large' : 'normal')"
-                        class="accent-primary">
-                </label>
-                <label class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                    <span class="text-sm font-bold text-text-default">Text to Speech</span>
-                    <input type="checkbox" id="panel-tts" onchange="updateGlobalSetting('textToSpeech', this.checked)"
-                        class="accent-primary">
-                </label>
-            </div>
-            <button onclick="localStorage.removeItem('hl_accessibility_settings'); location.reload()"
-                class="w-full py-2 bg-red-100 text-red-700 rounded font-bold mt-4">Reset</button>
-        </div>
-    </div>
-
-    <div id="reading-mask" class="hidden">
-        <div id="reading-guide" style="top:30%"></div>
-    </div>
-
-</body>
-
-</html>
+<?php include 'src/footer.php'; ?>
