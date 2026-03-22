@@ -86,6 +86,7 @@
                 </div>
 
                 <div class="flex flex-wrap justify-center items-center gap-6">
+                    <div class="gtranslate_wrapper relative z-50"></div>
                     <a href="https://www.buymeacoffee.com/hestena62l" target="_blank" rel="noopener noreferrer" class="group relative inline-flex items-center gap-2 bg-[#FFDD00] text-black px-5 py-2.5 rounded-full font-bold font-['Cookie',cursive] text-lg hover:bg-[#ffe44d] transition-all shadow-lg hover:shadow-[#FFDD00]/30 transform hover:-translate-y-1 font-handwriting">
                         <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="" class="h-5 w-5" loading="lazy">
                         <span>Buy me a coffee</span>

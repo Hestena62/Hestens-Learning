@@ -14,7 +14,7 @@ $journals = [
         "title" => "Dyslexia & Learning Disabilities Research",
         "cover" => "https://placehold.co/300x400/8b5cf6/ffffff?text=Dyslexia+Research",
         "description" => "A research journal focusing on the latest research in dyslexia, exploring innovative teaching methods and interventions.",
-        "link" => "research/DLDR/index.php" // Assuming this structure based on previous code 'research/DLDR'
+        "link" => "DLDR/index.php" // Assuming this structure based on previous code 'research/DLDR'
     ]
     // Add more journals here in the future
 ];

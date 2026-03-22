@@ -80,7 +80,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Practice Problems</h4>
                             <p class="text-text-secondary mb-4">Access a wide range of interactive practice problems, complete with hints and step-by-step solutions to help you understand challenging concepts. The best way to learn math is by doing it!</p>
-                            <a href="/student/math-practice.html" class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 mb-4 font-medium transition-colors">Go to Our Practice Problems &rarr;</a>
+                            <a href="/student/math-practice.php" class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 mb-4 font-medium transition-colors">Go to Our Practice Problems &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">More Great Resources:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><a href="https://www.khanacademy.org/math" target="_blank" rel="noopener noreferrer" class="text-link-color hover:underline">Khan Academy</a>: Free practice exercises, quizzes, and instructional videos for all levels.</li>
@@ -90,7 +90,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Video Tutorials</h4>
                             <p class="text-text-secondary mb-4">Watch engaging video lessons that break down everything from fractions to algebra. Our visual aids and clear explanations make learning easy.</p>
-                            <a href="/student/math-tutorials.html" class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 mb-4 font-medium transition-colors">Browse Our Video Tutorials &rarr;</a>
+                            <a href="/student/math-tutorials.php" class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 mb-4 font-medium transition-colors">Browse Our Video Tutorials &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">More Great Resources:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><a href="https://www.youtube.com/@TheOrganicChemistryTutor" target="_blank" rel="noopener noreferrer" class="text-link-color hover:underline">The Organic Chemistry Tutor</a>: (Don't let the name fool you!) Amazing, clear videos on Algebra, Geometry, Calculus, and more.</li>
@@ -100,7 +100,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Study Guides & Notes</h4>
                             <p class="text-text-secondary mb-4">Download printable study guides and formula sheets. These are perfect for quick reference, test prep, and reinforcing what you've learned in class.</p>
-                            <a href="/student/math-study-guides.html" class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 mb-4 font-medium transition-colors">Find Our Study Guides &rarr;</a>
+                            <a href="/student/math-study-guides.php" class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 mb-4 font-medium transition-colors">Find Our Study Guides &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">Key Concepts & Formulas:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><strong>PEMDAS:</strong> Parentheses, Exponents, Multiplication/Division, Addition/Subtraction.</li>
@@ -112,7 +112,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Interactive Math Games</h4>
                             <p class="text-text-secondary mb-4">Have fun while learning! Our math games are designed to improve your skills in a fun, competitive, and engaging way.</p>
-                            <a href="/student/math-games.html" class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 mb-4 font-medium transition-colors">Play Our Math Games &rarr;</a>
+                            <a href="/student/math-games.php" class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 mb-4 font-medium transition-colors">Play Our Math Games &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">More Great Resources:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><a href="https://www.desmos.com/calculator" target="_blank" rel="noopener noreferrer" class="text-link-color hover:underline">Desmos</a>: A beautiful, free graphing calculator and art tool.</li>
@@ -131,7 +131,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Reading Comprehension</h4>
                             <p class="text-text-secondary mb-4">Practice with a variety of texts and question sets designed to improve your ability to understand, analyze, and interpret what you read.</p>
-                            <a href="/student/ela-reading.html" class="inline-block px-4 py-2 bg-green-600/10 text-green-700 rounded-lg hover:bg-green-600/20 mb-4 font-medium transition-colors">Start Reading Practice &rarr;</a>
+                            <a href="/student/ela-reading.php" class="inline-block px-4 py-2 bg-green-600/10 text-green-700 rounded-lg hover:bg-green-600/20 mb-4 font-medium transition-colors">Start Reading Practice &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">Active Reading Tips:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><strong>Annotate:</strong> Highlight key passages and write notes in the margins.</li>
@@ -147,7 +147,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Writing Prompts & Guides</h4>
                             <p class="text-text-secondary mb-4">Get creative with our writing prompts for narratives, essays, and reports. Use our guides to structure your writing and improve your style.</p>
-                            <a href="/student/ela-writing.html" class="inline-block px-4 py-2 bg-green-600/10 text-green-700 rounded-lg hover:bg-green-600/20 mb-4 font-medium transition-colors">Explore Writing Guides &rarr;</a>
+                            <a href="/student/ela-writing.php" class="inline-block px-4 py-2 bg-green-600/10 text-green-700 rounded-lg hover:bg-green-600/20 mb-4 font-medium transition-colors">Explore Writing Guides &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">Example Writing Prompts:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><strong>Narrative:</strong> Write a story about a time you found something you weren't looking for.</li>
@@ -162,7 +162,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Grammar & Vocabulary</h4>
                             <p class="text-text-secondary mb-4">Master the rules of grammar with interactive exercises. Expand your vocabulary with daily words, quizzes, and word-based games.</p>
-                            <a href="/student/ela-grammar.html" class="inline-block px-4 py-2 bg-green-600/10 text-green-700 rounded-lg hover:bg-green-600/20 mb-4 font-medium transition-colors">Improve Your Grammar &rarr;</a>
+                            <a href="/student/ela-grammar.php" class="inline-block px-4 py-2 bg-green-600/10 text-green-700 rounded-lg hover:bg-green-600/20 mb-4 font-medium transition-colors">Improve Your Grammar &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">Common Pitfalls:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><strong>Their / There / They're:</strong> (Possession / Place / "They are")</li>
@@ -178,7 +178,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Literature Analysis</h4>
                             <p class="text-text-secondary mb-4">Learn how to analyze literature like a pro. We provide guides on theme, character, plot, and literary devices for common books and plays.</p>
-                            <a href="/student/ela-literature.html" class="inline-block px-4 py-2 bg-green-600/10 text-green-700 rounded-lg hover:bg-green-600/20 mb-4 font-medium transition-colors">Analyze Literature &rarr;</a>
+                            <a href="/student/ela-literature.php" class="inline-block px-4 py-2 bg-green-600/10 text-green-700 rounded-lg hover:bg-green-600/20 mb-4 font-medium transition-colors">Analyze Literature &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">Key Literary Devices:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><strong>Metaphor:</strong> A direct comparison (e.g., "His eyes were ice.").</li>
@@ -203,7 +203,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Virtual Experiments</h4>
                             <p class="text-text-secondary mb-4">Engage in safe, interactive virtual labs. Conduct experiments in biology, chemistry, and physics right from your computer.</p>
-                            <a href="/student/science-experiments.html" class="inline-block px-4 py-2 bg-red-600/10 text-red-700 rounded-lg hover:bg-red-600/20 mb-4 font-medium transition-colors">Try Our Virtual Labs &rarr;</a>
+                            <a href="/student/science-experiments.php" class="inline-block px-4 py-2 bg-red-600/10 text-red-700 rounded-lg hover:bg-red-600/20 mb-4 font-medium transition-colors">Try Our Virtual Labs &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">More Great Resources:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><a href="https://phet.colorado.edu/" target="_blank" rel="noopener noreferrer" class="text-link-color hover:underline">PhET Interactive Simulations</a>: Fun, free simulations for physics, chemistry, biology, and math.</li>
@@ -213,7 +213,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Science Articles & News</h4>
                             <p class="text-text-secondary mb-4">Stay up-to-date with the latest scientific discoveries. Read articles on space, nature, technology, and health, written just for students.</p>
-                            <a href="/student/science-articles.html" class="inline-block px-4 py-2 bg-red-600/10 text-red-700 rounded-lg hover:bg-red-600/20 mb-4 font-medium transition-colors">Read Our Science News &rarr;</a>
+                            <a href="/student/science-articles.php" class="inline-block px-4 py-2 bg-red-600/10 text-red-700 rounded-lg hover:bg-red-600/20 mb-4 font-medium transition-colors">Read Our Science News &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">More Great Resources:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><a href="https://www.nasa.gov/students" target="_blank" rel="noopener noreferrer" class="text-link-color hover:underline">NASA for Students</a>: Learn about space, rockets, and our planet.</li>
@@ -223,7 +223,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Diagrams & Models</h4>
                             <p class="text-text-secondary mb-4">Explore detailed, interactive diagrams of the human body, chemical structures, and physical processes to help visualize complex topics.</p>
-                            <a href="/student/science-diagrams.html" class="inline-block px-4 py-2 bg-red-600/10 text-red-700 rounded-lg hover:bg-red-600/20 mb-4 font-medium transition-colors">View Interactive Diagrams &rarr;</a>
+                            <a href="/student/science-diagrams.php" class="inline-block px-4 py-2 bg-red-600/10 text-red-700 rounded-lg hover:bg-red-600/20 mb-4 font-medium transition-colors">View Interactive Diagrams &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">More Great Resources:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><a href="https://ptable.com/" target="_blank" rel="noopener noreferrer" class="text-link-color hover:underline">Ptable</a>: An amazing interactive periodic table.</li>
@@ -233,7 +233,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Science Quizzes</h4>
                             <p class="text-text-secondary mb-4">Test your knowledge with quizzes on everything from the solar system to the periodic table. Get instant feedback to help you study.</p>
-                            <a href="/student/science-quizzes.html" class="inline-block px-4 py-2 bg-red-600/10 text-red-700 rounded-lg hover:bg-red-600/20 mb-4 font-medium transition-colors">Take a Science Quiz &rarr;</a>
+                            <a href="/student/science-quizzes.php" class="inline-block px-4 py-2 bg-red-600/10 text-red-700 rounded-lg hover:bg-red-600/20 mb-4 font-medium transition-colors">Take a Science Quiz &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">More Great Resources:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><a href="https://quizlet.com/subject/science/" target="_blank" rel="noopener noreferrer" class="text-link-color hover:underline">Quizlet</a>: Create and use flashcards for any science topic.</li>
@@ -252,7 +252,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Historical Timelines</h4>
                             <p class="text-text-secondary mb-4">Walk through history with our interactive timelines. See key events, figures, and eras come to life and understand how they connect.</p>
-                            <a href="/student/social-history.html" class="inline-block px-4 py-2 bg-yellow-600/10 text-yellow-700 rounded-lg hover:bg-yellow-600/20 mb-4 font-medium transition-colors">Explore Our Timelines &rarr;</a>
+                            <a href="/student/social-history.php" class="inline-block px-4 py-2 bg-yellow-600/10 text-yellow-700 rounded-lg hover:bg-yellow-600/20 mb-4 font-medium transition-colors">Explore Our Timelines &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">More Great Resources:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><a href="https://www.history.com/topics" target="_blank" rel="noopener noreferrer" class="text-link-color hover:underline">History.com</a>: Explore articles, videos, and timelines on thousands of topics.</li>
@@ -262,7 +262,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Interactive Maps</h4>
                             <p class="text-text-secondary mb-4">Explore the world with interactive maps. Learn about geography, historical boundaries, trade routes, and cultural regions.</p>
-                            <a href="/student/social-maps.html" class="inline-block px-4 py-2 bg-yellow-600/10 text-yellow-700 rounded-lg hover:bg-yellow-600/20 mb-4 font-medium transition-colors">View Our Interactive Maps &rarr;</a>
+                            <a href="/student/social-maps.php" class="inline-block px-4 py-2 bg-yellow-600/10 text-yellow-700 rounded-lg hover:bg-yellow-600/20 mb-4 font-medium transition-colors">View Our Interactive Maps &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">More Great Resources:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><a href="https://earth.google.com/" target="_blank" rel="noopener noreferrer" class="text-link-color hover:underline">Google Earth</a>: Explore the globe in 3D, from street level to space.</li>
@@ -272,7 +272,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Civics & Government</h4>
                             <p class="text-text-secondary mb-4">Understand how government works. Learn about the constitution, your rights and responsibilities, and the political process.</p>
-                            <a href="/student/social-civics.html" class="inline-block px-4 py-2 bg-yellow-600/10 text-yellow-700 rounded-lg hover:bg-yellow-600/20 mb-4 font-medium transition-colors">Learn About Civics &rarr;</a>
+                            <a href="/student/social-civics.php" class="inline-block px-4 py-2 bg-yellow-600/10 text-yellow-700 rounded-lg hover:bg-yellow-600/20 mb-4 font-medium transition-colors">Learn About Civics &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">More Great Resources:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><a href="https://www.icivics.org/" target="_blank" rel="noopener noreferrer" class="text-link-color hover:underline">iCivics</a>: Play games that teach you about civics, government, and law.</li>
@@ -282,7 +282,7 @@ include 'src/header.php';
                         <section class="p-6 bg-card-bg rounded-base-rounded shadow-lg">
                             <h4 class="text-2xl font-semibold text-text-primary mb-3">Current Events Analysis</h4>
                             <p class="text-text-secondary mb-4">Connect the past to the present. We provide student-friendly breakdowns of current events and explain their historical context.</p>
-                            <a href="/student/social-current-events.html" class="inline-block px-4 py-2 bg-yellow-600/10 text-yellow-700 rounded-lg hover:bg-yellow-600/20 mb-4 font-medium transition-colors">Analyze Current Events &rarr;</a>
+                            <a href="/student/social-current-events.php" class="inline-block px-4 py-2 bg-yellow-600/10 text-yellow-700 rounded-lg hover:bg-yellow-600/20 mb-4 font-medium transition-colors">Analyze Current Events &rarr;</a>
                             <h5 class="text-lg font-medium text-text-primary mb-2">More Great Resources:</h5>
                             <ul class="list-disc list-inside text-text-secondary space-y-1">
                                 <li><a href="https://newsela.com/" target="_blank" rel="noopener noreferrer" class="text-link-color hover:underline">Newsela</a>: News articles adjusted for different reading levels.</li>

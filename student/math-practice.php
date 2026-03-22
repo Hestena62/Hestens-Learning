@@ -27,10 +27,10 @@ include '..\src\header.php';
                     <h5 class="text-xl font-semibold text-primary mb-3"><i class="fas fa-superscript mr-2" aria-hidden="true"></i>Algebra Practice</h5>
                     <p class="text-text-secondary mb-4">Practice solving equations, inequalities, and working with functions. Problems for all levels.</p>
                     <ul class="list-none space-y-2 flex-grow">
-                        <li><a href="#" onclick="openModal('algebraModal')" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Basic Algebra</a></li>
-                        <li><a href="#" onclick="openModal('algebraModal')" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Linear Equations</a></li>
-                        <li><a href="#" onclick="openModal('algebraModal')" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Quadratic Equations</a></li>
-                        <li><a href="#" onclick="openModal('algebraModal')" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Systems of Equations</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Basic Algebra'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Basic Algebra</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Linear Equations'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Linear Equations</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Quadratic Equations'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Quadratic Equations</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Systems of Equations'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Systems of Equations</a></li>
                     </ul>
                     <!-- MODIFIED: Changed <a> to <button> and added onclick -->
                     <button onclick="openModal('algebraModal')" class="mt-auto px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:opacity-90 text-center transition-opacity duration-200 focus:outline-none focus:ring-4 focus:ring-accent">Start Algebra Practice</button>
@@ -44,10 +44,10 @@ include '..\src\header.php';
                     <h5 class="text-xl font-semibold text-primary mb-3"><i class="fas fa-shapes mr-2" aria-hidden="true"></i>Geometry Exercises</h5>
                     <p class="text-text-secondary mb-4">Work on problems involving shapes, angles, areas, and volumes. Perfect for visual learners.</p>
                     <ul class="list-none space-y-2 flex-grow">
-                        <li><a href="#" onclick="openModal('geometryModal')" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Angles and Lines</a></li>
-                        <li><a href="#" onclick="openModal('geometryModal')" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Area and Perimeter</a></li>
-                        <li><a href="#" onclick="openModal('geometryModal')" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Volume and Surface Area</a></li>
-                        <li><a href="#" onclick="openModal('geometryModal')" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Geometric Proofs</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Angles and Lines'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Angles and Lines</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Area and Perimeter'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Area and Perimeter</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Volume and Surface Area'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Volume and Surface Area</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Geometric Proofs'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Geometric Proofs</a></li>
                     </ul>
                     <!-- MODIFIED: Changed <a> to <button> and added onclick -->
                     <button onclick="openModal('geometryModal')" class="mt-auto px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:opacity-90 text-center transition-opacity duration-200 focus:outline-none focus:ring-4 focus:ring-accent">Do Geometry Exercises</button>
@@ -61,10 +61,10 @@ include '..\src\header.php';
                     <h5 class="text-xl font-semibold text-primary mb-3"><i class="fas fa-infinity mr-2" aria-hidden="true"></i>Calculus Worksheets</h5>
                     <p class="text-text-secondary mb-4">Challenge yourself with problems on limits, derivatives, integrals, and their applications.</p>
                     <ul class="list-none space-y-2 flex-grow">
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Limits and Continuity</a></li>
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Differentiation</a></li>
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Integration</a></li>
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Applications of Calculus</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Limits and Continuity'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Limits and Continuity</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Differentiation'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Differentiation</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Integration'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Integration</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Applications of Calculus'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Applications of Calculus</a></li>
                     </ul>
                     <a href="#" class="mt-auto px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:opacity-90 text-center transition-opacity duration-200 focus:outline-none focus:ring-4 focus:ring-accent">Access Calculus Worksheets</a>
                 </div>
@@ -77,10 +77,10 @@ include '..\src\header.php';
                     <h5 class="text-xl font-semibold text-primary mb-3"><i class="fas fa-chart-bar mr-2" aria-hidden="true"></i>Statistics Problems</h5>
                     <p class="text-text-secondary mb-4">Practice data analysis, probability, and statistical inference with our curated problem sets.</p>
                     <ul class="list-none space-y-2 flex-grow">
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Descriptive Statistics</a></li>
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Probability Distributions</a></li>
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Hypothesis Testing</a></li>
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Regression Analysis</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Descriptive Statistics'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Descriptive Statistics</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Probability Distributions'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Probability Distributions</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Hypothesis Testing'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Hypothesis Testing</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Regression Analysis'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Regression Analysis</a></li>
                     </ul>
                     <a href="#" class="mt-auto px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:opacity-90 text-center transition-opacity duration-200 focus:outline-none focus:ring-4 focus:ring-accent">Solve Statistics Problems</a>
                 </div>
@@ -93,10 +93,10 @@ include '..\src\header.php';
                     <h5 class="text-xl font-semibold text-primary mb-3"><i class="fas fa-hashtag mr-2" aria-hidden="true"></i>Number Theory Problems</h5>
                     <p class="text-text-secondary mb-4">Explore the fascinating world of numbers with problems on prime numbers, divisibility, and modular arithmetic.</p>
                     <ul class="list-none space-y-2 flex-grow">
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Prime Numbers</a></li>
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Divisibility Rules</a></li>
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Modular Arithmetic</a></li>
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Diophantine Equations</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Prime Numbers'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Prime Numbers</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Divisibility Rules'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Divisibility Rules</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Modular Arithmetic'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Modular Arithmetic</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Diophantine Equations'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Diophantine Equations</a></li>
                     </ul>
                     <a href="#" class="mt-auto px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:opacity-90 text-center transition-opacity duration-200 focus:outline-none focus:ring-4 focus:ring-accent">Explore Number Theory</a>
                 </div>
@@ -109,10 +109,10 @@ include '..\src\header.php';
                     <h5 class="text-xl font-semibold text-primary mb-3"><i class="fas fa-puzzle-piece mr-2" aria-hidden="true"></i>Applied Math Challenges</h5>
                     <p class="text-text-secondary mb-4">Apply mathematical concepts to real-world scenarios with these challenging application problems.</p>
                     <ul class="list-none space-y-2 flex-grow">
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Financial Math</a></li>
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Physics Applications</a></li>
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Engineering Problems</a></li>
-                        <li><a href="#" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Data Science Challenges</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Financial Math'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Financial Math</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Physics Applications'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Physics Applications</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Engineering Problems'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Engineering Problems</a></li>
+                        <li><a href="#" onclick="openDynamicModal('Data Science Challenges'); return false;" class="text-link-color hover:underline"><i class="fas fa-angle-right mr-2" aria-hidden="true"></i>Data Science Challenges</a></li>
                     </ul>
                     <a href="#" class="mt-auto px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:opacity-90 text-center transition-opacity duration-200 focus:outline-none focus:ring-4 focus:ring-accent">Tackle Applied Challenges</a>
                 </div>
@@ -468,5 +468,7 @@ include '..\src\header.php';
 
 <?php
 // Include the footer file, which contains the <footer>, modals, and closing </body> and </html> tags.
+include '..\src\resource-modal.php';
+// Include the footer file
 include '..\src\footer.php';
 ?>

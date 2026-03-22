@@ -262,6 +262,11 @@
                         class="accent-primary">
                 </label>
                 <label class="flex justify-between items-center p-2 bg-base-bg rounded">
+                    <span class="text-sm font-bold text-text-default">Show Permalinks</span>
+                    <input type="checkbox" id="panel-permalinks" onchange="updateGlobalSetting('showPermalinks', this.checked)"
+                        class="accent-primary">
+                </label>
+                <label class="flex justify-between items-center p-2 bg-base-bg rounded">
                     <span class="text-sm font-bold text-text-default">Stop Animations</span>
                     <input type="checkbox" id="panel-stop-animations" onchange="updateGlobalSetting('stopAnimations', this.checked)"
                         class="accent-primary">
@@ -375,7 +380,6 @@
                                 class="fas fa-book-open mr-1"></i> Library</a>
                     </div>
                     <div class="flex items-center gap-4 mt-4 lg:mt-0 w-full lg:w-auto">
-                        <div class="gtranslate_wrapper relative z-50"></div>
                         <form action="/search.php" method="GET" class="flex items-center group relative w-full lg:w-auto">
                             <input type="text" name="q" placeholder="Search..."
                                 class="bg-base-bg text-text-default rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-primary w-full lg:w-48 border border-gray-200 dark:border-gray-700 transition-all duration-300" />

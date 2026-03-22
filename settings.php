@@ -368,6 +368,28 @@ include 'src/header.php';
                             </div>
                         </label>
                     </div>
+
+                    <!-- Show Permalinks -->
+                    <div
+                        class="flex items-center justify-between p-5 bg-base-bg rounded-2xl transition-colors hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 flex items-center justify-center text-xl">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold text-text-default block text-lg">Show Permalinks</span>
+                                <span class="text-sm text-text-secondary">Show links next to headings.</span>
+                            </div>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="page-permalinks-toggle" class="sr-only peer"
+                                onchange="updateGlobalSetting('showPermalinks', this.checked)">
+                            <div
+                                class="w-14 h-8 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary">
+                            </div>
+                        </label>
+                    </div>
                 </div>
             </section>
 
@@ -663,6 +685,7 @@ include 'src/header.php';
         if (document.getElementById('page-links-toggle')) document.getElementById('page-links-toggle').checked = !!s.highlightLinks;
         if (document.getElementById('page-headings-toggle')) document.getElementById('page-headings-toggle').checked = !!s.highlightHeadings;
         if (document.getElementById('page-tts-toggle')) document.getElementById('page-tts-toggle').checked = !!s.textToSpeech;
+        if (document.getElementById('page-permalinks-toggle')) document.getElementById('page-permalinks-toggle').checked = !!s.showPermalinks;
     }
 
     function exportSettings() {

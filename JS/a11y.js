@@ -23,7 +23,8 @@ const defaultSettings = {
     highlightHeadings: false,
     textToSpeech: false, // NEW: TTS Toggle
     textAlign: 'left',
-    stopAnimations: false
+    stopAnimations: false,
+    showPermalinks: false
 };
 
 let currentSettings = defaultSettings;
@@ -118,6 +119,7 @@ function applySettings(s) {
     // New Toggles
     toggleClass(b, 'highlight-links', !!s.highlightLinks);
     toggleClass(b, 'highlight-headings', !!s.highlightHeadings);
+    toggleClass(b, 'show-permalinks', !!s.showPermalinks);
 
     // Also apply to HTML for consistency if needed for Tailwind
     toggleClass(r, 'focus-mode', !!s.focusMode);
@@ -180,6 +182,7 @@ function syncPanelInputs(s) {
     if (el('panel-links')) el('panel-links').checked = !!s.highlightLinks;
     if (el('panel-headings')) el('panel-headings').checked = !!s.highlightHeadings;
     if (el('panel-tts')) el('panel-tts').checked = !!s.textToSpeech;
+    if (el('panel-permalinks')) el('panel-permalinks').checked = !!s.showPermalinks;
     
     if (el('panel-letter-spacing')) el('panel-letter-spacing').value = s.letterSpacing;
     if (el('panel-word-spacing')) el('panel-word-spacing').value = s.wordSpacing;
@@ -355,10 +358,12 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         applySettings(currentSettings);
         initSelectionToolbar();
+        initPermalinks();
     });
 } else {
     applySettings(currentSettings);
     initSelectionToolbar();
+    initPermalinks();
 }
 
 // Listen for internal system updates
@@ -429,4 +434,46 @@ function showDictionaryTooltip(x, y, word, partOfSpeech, definition) {
             }
         });
     }, 100);
+}
+
+// --- PERMALINKS ---
+function initPermalinks() {
+    if (!document.getElementById('permalink-style')) {
+        const style = document.createElement('style');
+        style.id = 'permalink-style';
+        style.textContent = `
+            body:not(.show-permalinks) .permalink { display: none !important; }
+            .permalink {
+                margin-left: 0.5rem;
+                color: var(--site-primary, #4F46E5);
+                text-decoration: none;
+                opacity: 0.5;
+                transition: opacity 0.2s;
+                font-size: 0.8em;
+                vertical-align: middle;
+            }
+            .permalink:hover { opacity: 1; }
+            h1:hover .permalink, h2:hover .permalink, h3:hover .permalink, h4:hover .permalink, h5:hover .permalink, h6:hover .permalink { opacity: 0.8; }
+        `;
+        document.head.appendChild(style);
+    }
+
+    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    headings.forEach(h => {
+        if (h.closest('.hidden:not(#main-content *)') || h.classList.contains('sr-only')) return;
+        
+        if (!h.id) {
+            h.id = h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        }
+
+        if (h.id && !h.querySelector('.permalink')) {
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.className = 'permalink';
+            a.innerHTML = '<i class="fas fa-link"></i>';
+            a.title = 'Link to this section';
+            h.appendChild(document.createTextNode(' '));
+            h.appendChild(a);
+        }
+    });
 }
