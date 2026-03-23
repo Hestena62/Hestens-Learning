@@ -778,7 +778,7 @@ include '..\src\header.php';
                 <div class="text-gray-600 space-y-4 text-lg">
                     <p>This assessment contains materials adapted from publicly available and open-source educational resources.</p>
                     <p>We believe in open education and have utilized these resources to provide accessible, high-quality learning experiences for all students.</p>
-                    <p>If you have any questions regarding the specific sources or licensing of the materials used in this module, please contact us.</p>
+                    <p>If you have any questions regarding the specific sources or licensing of the materials used in this module, please <a href="mailto:test@hestena62.com?subject=<?php echo rawurlencode($pageTitle ?? 'Assessment'); ?>&amp;body=Page%20URL:%20<?php echo rawurlencode('http' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost') . ($_SERVER['REQUEST_URI'] ?? '')); ?>" class="text-blue-600 hover:underline">contact us</a>.</p>
                 </div>
                 <div class="mt-8 text-center">
                     <button type="button" onclick="hideDisclosure()" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg transition w-full">Close</button>
