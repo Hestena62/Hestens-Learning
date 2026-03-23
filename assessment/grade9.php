@@ -178,9 +178,12 @@ include '..\src\header.php';
 
         <form id="assessment-form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" class="bg-white p-6 md:p-10 rounded-2xl shadow-xl">
 
-            <header class="border-b border-gray-200 pb-6 mb-8">
+            <header class="border-b border-gray-200 pb-6 mb-8 text-center md:text-left relative">
                 <h1 id="main-heading" class="text-3xl md:text-4xl text-blue-700 mb-3 tracking-tight">Algebra I Regents Examination</h1>
-                <p class="text-lg text-gray-600">January 2026 Administration</p>
+                <p class="text-lg text-gray-600 mb-3">January 2026 Administration</p>
+                <button type="button" onclick="showDisclosure()" class="text-sm font-medium text-blue-500 hover:text-blue-600 hover:underline transition-colors flex items-center justify-center md:justify-start gap-1 mx-auto md:mx-0">
+                    <i class="fas fa-info-circle"></i> Public Resource Disclosure
+                </button>
             </header>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -751,7 +754,37 @@ include '..\src\header.php';
                 URL.revokeObjectURL(url);
             }
         </script>
+        <script>
+            function showDisclosure() {
+                const modal = document.getElementById('disclosure-modal');
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+            function hideDisclosure() {
+                const modal = document.getElementById('disclosure-modal');
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        </script>
         <?php endif; ?>
+
+        <!-- Disclosure Modal -->
+        <div id="disclosure-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 md:p-8 relative">
+                <button type="button" onclick="hideDisclosure()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4"><i class="fas fa-info-circle text-blue-500 mr-2"></i> Resource Disclosure</h3>
+                <div class="text-gray-600 space-y-4 text-lg">
+                    <p>This assessment contains materials adapted from publicly available and open-source educational resources.</p>
+                    <p>We believe in open education and have utilized these resources to provide accessible, high-quality learning experiences for all students.</p>
+                    <p>If you have any questions regarding the specific sources or licensing of the materials used in this module, please contact us.</p>
+                </div>
+                <div class="mt-8 text-center">
+                    <button type="button" onclick="hideDisclosure()" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg transition w-full">Close</button>
+                </div>
+            </div>
+        </div>
 
     </main>
 

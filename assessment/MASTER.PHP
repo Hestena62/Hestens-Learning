@@ -227,9 +227,12 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
 
     <form id="assessment-form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" class="bg-white dark:bg-gray-800 p-6 md:p-10 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 mb-8">
 
-        <header class="border-b border-gray-200 dark:border-gray-700 pb-6 mb-8 text-center md:text-left">
+        <header class="border-b border-gray-200 dark:border-gray-700 pb-6 mb-8 text-center md:text-left relative">
             <h1 id="main-heading" class="text-3xl md:text-4xl text-blue-700 dark:text-blue-400 mb-3 tracking-tight font-bold"><?php echo $pageTitle; ?></h1>
-            <p class="text-lg text-gray-600 dark:text-gray-400"><?php echo $pageDescription; ?></p>
+            <p class="text-lg text-gray-600 dark:text-gray-400 mb-3"><?php echo $pageDescription; ?></p>
+            <button type="button" onclick="showDisclosure()" class="text-sm font-medium text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 hover:underline transition-colors flex items-center justify-center md:justify-start gap-1 mx-auto md:mx-0">
+                <i class="fas fa-info-circle"></i> Public Resource Disclosure
+            </button>
         </header>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800/50">
@@ -479,7 +482,37 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
             URL.revokeObjectURL(url);
         }
     </script>
+    <script>
+        function showDisclosure() {
+            const modal = document.getElementById('disclosure-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        function hideDisclosure() {
+            const modal = document.getElementById('disclosure-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
     <?php endif; ?>
+
+    <!-- Disclosure Modal -->
+    <div id="disclosure-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-lg w-full p-6 md:p-8 relative">
+            <button type="button" onclick="hideDisclosure()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-info-circle text-blue-500 mr-2"></i> Resource Disclosure</h3>
+            <div class="text-gray-600 dark:text-gray-300 space-y-4 text-lg">
+                <p>This assessment contains materials adapted from publicly available and open-source educational resources.</p>
+                <p>We believe in open education and have utilized these resources to provide accessible, high-quality learning experiences for all students.</p>
+                <p>If you have any questions regarding the specific sources or licensing of the materials used in this module, please contact us.</p>
+            </div>
+            <div class="mt-8 text-center">
+                <button type="button" onclick="hideDisclosure()" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg transition w-full">Close</button>
+            </div>
+        </div>
+    </div>
 
 </main>
 
