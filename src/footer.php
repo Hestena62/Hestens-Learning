@@ -12,8 +12,8 @@
                         <i class="fas fa-graduation-cap text-blue-500"></i> About
                     </h4>
                     <div class="flex items-center gap-3 group">
-                        <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/20 group-hover:rotate-6 transition-transform duration-300">
-                            <span class="text-white font-bold text-xl font-serif">H</span>
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/20 group-hover:rotate-6 transition-transform duration-300 overflow-hidden">
+                            <img src="/Images/6791421e-7ca7-40bd-83d3-06a479bf7f36.png" alt="Logo" class="w-full h-full object-cover">
                         </div>
                         <div class="flex flex-col">
                             <span class="text-lg font-bold text-white tracking-tight leading-none group-hover:text-blue-400 transition-colors">Hesten's Learning</span>
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <p class="text-slate-400 leading-relaxed text-sm">
-                        Empowering students with learning disabilities through personalized learning experiences. <a href="#" class="text-blue-400 hover:text-blue-300 underline decoration-blue-500/30 hover:decoration-blue-300">Learn more</a>
+                        Empowering students with learning disabilities through personalized learning experiences. <a href="/about.php" class="text-blue-400 hover:text-blue-300 underline decoration-blue-500/30 hover:decoration-blue-300">Learn more</a>
                     </p>
                 </div>
 
@@ -31,10 +31,10 @@
                         <i class="fas fa-link text-teal-500"></i> Quick Links
                     </h4>
                     <ul class="space-y-4 text-sm font-medium">
-                        <li><a href="#" class="text-slate-400 hover:text-teal-400 transition-colors flex items-center gap-3 group"><i class="fas fa-book text-slate-600 group-hover:text-teal-500 transition-colors"></i> Curriculum</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-teal-400 transition-colors flex items-center gap-3 group"><i class="fas fa-flask text-slate-600 group-hover:text-teal-500 transition-colors"></i> Research</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-teal-400 transition-colors flex items-center gap-3 group"><i class="fas fa-book-open text-slate-600 group-hover:text-teal-500 transition-colors"></i> Library</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-teal-400 transition-colors flex items-center gap-3 group"><i class="fas fa-question-circle text-slate-600 group-hover:text-teal-500 transition-colors"></i> Help Center</a></li>
+                        <li><a href="/curriculum.php" class="text-slate-400 hover:text-teal-400 transition-colors flex items-center gap-3 group"><i class="fas fa-book text-slate-600 group-hover:text-teal-500 transition-colors"></i> Curriculum</a></li>
+                        <li><a href="/research/" class="text-slate-400 hover:text-teal-400 transition-colors flex items-center gap-3 group"><i class="fas fa-flask text-slate-600 group-hover:text-teal-500 transition-colors"></i> Research</a></li>
+                        <li><a href="/library/" class="text-slate-400 hover:text-teal-400 transition-colors flex items-center gap-3 group"><i class="fas fa-book-open text-slate-600 group-hover:text-teal-500 transition-colors"></i> Library</a></li>
+                        <li><a href="/help-center.php" class="text-slate-400 hover:text-teal-400 transition-colors flex items-center gap-3 group"><i class="fas fa-question-circle text-slate-600 group-hover:text-teal-500 transition-colors"></i> Help Center</a></li>
                     </ul>
                 </div>
 
@@ -44,9 +44,9 @@
                         <i class="fas fa-hand-holding-heart text-purple-500"></i> Support
                     </h4>
                     <ul class="space-y-4 text-sm font-medium">
-                        <li><a href="#" class="text-slate-400 hover:text-purple-400 transition-colors flex items-center gap-3 group"><i class="fas fa-envelope text-slate-600 group-hover:text-purple-500 transition-colors"></i> Contact Us</a></li>
+                        <li><a href="/contact.php" class="text-slate-400 hover:text-purple-400 transition-colors flex items-center gap-3 group"><i class="fas fa-envelope text-slate-600 group-hover:text-purple-500 transition-colors"></i> Contact Us</a></li>
                         <li><a href="#" class="text-slate-400 hover:text-purple-400 transition-colors flex items-center gap-3 group"><i class="fas fa-home text-slate-600 group-hover:text-purple-500 transition-colors"></i> For Students</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-purple-400 transition-colors flex items-center gap-3 group"><i class="fas fa-users text-slate-600 group-hover:text-purple-500 transition-colors"></i> For Parents</a></li>
+                        <li><a href="/parents.php" class="text-slate-400 hover:text-purple-400 transition-colors flex items-center gap-3 group"><i class="fas fa-users text-slate-600 group-hover:text-purple-500 transition-colors"></i> For Parents</a></li>
                         <li><a href="#" class="text-slate-400 hover:text-purple-400 transition-colors flex items-center gap-3 group"><i class="fas fa-chalkboard-teacher text-slate-600 group-hover:text-purple-500 transition-colors"></i> For Teachers</a></li>
                     </ul>
                 </div>
@@ -58,9 +58,9 @@
                     </h4>
                     <ul class="space-y-4 text-sm font-medium">
                         <li><a href="#" class="text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-3 group"><i class="fas fa-shield-alt text-slate-600 group-hover:text-rose-500 transition-colors"></i> Privacy Policy</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-3 group"><i class="fas fa-file-contract text-slate-600 group-hover:text-rose-500 transition-colors"></i> Terms of Use</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-3 group"><i class="fas fa-universal-access text-slate-600 group-hover:text-rose-500 transition-colors"></i> Accessibility</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-3 group"><i class="fas fa-info-circle text-slate-600 group-hover:text-rose-500 transition-colors"></i> About Us</a></li>
+                        <li><a href="/terms-of-use.php" class="text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-3 group"><i class="fas fa-file-contract text-slate-600 group-hover:text-rose-500 transition-colors"></i> Terms of Use</a></li>
+                        <li><a href="/settings.php" class="text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-3 group"><i class="fas fa-universal-access text-slate-600 group-hover:text-rose-500 transition-coors"></i> Accessibility</a></li>
+                        <li><a href="/about.php" class="text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-3 group"><i class="fas fa-info-circle text-slate-600 group-hover:text-rose-500 transition-colors"></i> About Us</a></li>
                     </ul>
                 </div>
             </div>

@@ -300,6 +300,7 @@
         <button id="next-announcement" class="absolute right-10 sm:right-14 top-1/2 transform -translate-y-1/2 text-white/80 hover:text-white p-1 sm:p-2 rounded-full transition-colors" aria-label="Next announcement" type="button"><i class="fas fa-chevron-right"></i></button>
         <button id="close-announcement" class="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 text-white/80 hover:text-white p-1 sm:p-2 rounded-full transition-colors" aria-label="Close announcement" type="button"><i class="fas fa-times"></i></button>
     </div>
+
     <script>
         // Announcement Bar Logic
         const annBar = document.getElementById('announcement-bar');
@@ -374,13 +375,13 @@
                     <div class="text-sm lg:flex-grow flex flex-col lg:flex-row gap-2 lg:gap-6 mt-4 lg:mt-0 font-medium whitespace-nowrap">
                         <a href="/" class="nav-link-animated block lg:inline-block text-text-default hover:text-primary transition-colors"><i
                                 class="fas fa-home mr-1"></i> Home</a>
-                        <a href="/learning.php"
+                       
+                           <!--     <a href="/learning.php"
                             class="nav-link-animated block lg:inline-block text-text-default hover:text-primary transition-colors"><i
-                                class="fas fa-book mr-1"></i> Learning</a>
+                                class="fas fa-book mr-1"></i> Learning</a> -->
+
                         <a href="/assessment" class="nav-link-animated block lg:inline-block text-text-default hover:text-primary transition-colors"><i
                                 class="fas fa-tasks mr-1"></i> Assessment</a>
-                        <a href="/library" class="nav-link-animated block lg:inline-block text-text-default hover:text-primary transition-colors"><i
-                                class="fas fa-book-open mr-1"></i> Library</a>
                     </div>
                     <div class="flex items-center gap-4 mt-4 lg:mt-0 w-full lg:w-auto">
                         <form action="/search.php" method="GET" class="flex items-center group relative w-full lg:w-auto">
