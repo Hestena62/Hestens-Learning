@@ -57,7 +57,7 @@
                         <i class="fas fa-balance-scale text-rose-500"></i> Legal & Settings
                     </h4>
                     <ul class="space-y-4 text-sm font-medium">
-                        <li><a href="#" class="text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-3 group"><i class="fas fa-shield-alt text-slate-600 group-hover:text-rose-500 transition-colors"></i> Privacy Policy</a></li>
+                        <li><a href="/privacy.php" class="text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-3 group"><i class="fas fa-shield-alt text-slate-600 group-hover:text-rose-500 transition-colors"></i> Privacy Policy</a></li>
                         <li><a href="/terms-of-use.php" class="text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-3 group"><i class="fas fa-file-contract text-slate-600 group-hover:text-rose-500 transition-colors"></i> Terms of Use</a></li>
                         <li><a href="/settings.php" class="text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-3 group"><i class="fas fa-universal-access text-slate-600 group-hover:text-rose-500 transition-coors"></i> Accessibility</a></li>
                         <li><a href="/about.php" class="text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-3 group"><i class="fas fa-info-circle text-slate-600 group-hover:text-rose-500 transition-colors"></i> About Us</a></li>

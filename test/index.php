@@ -45,7 +45,7 @@
           6 => "#",
           7 => "#",
           8 => "#",
-          9 => "/test/math-g9.php",
+          9 => "/assessment.php?id=math-g9",
           10 => "/test/math-g10.php",
           11 => "/test/math-g11.php",
           12 => "#"
