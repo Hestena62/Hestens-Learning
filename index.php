@@ -81,23 +81,6 @@ $themeMap = [
             A beautifully crafted educational experience. Personalized, accessible, and structured for focused mastery.
         </p>
 
-        <!-- Actions -->
-        <div class="flex flex-col sm:flex-row gap-5 justify-center items-center w-full max-w-xl animate-reveal" style="animation-delay: 0.2s;">
-            <a href="#paths" aria-label="Explore learning paths"
-                class="group relative inline-flex items-center justify-center gap-3 rounded-2xl bg-gray-900 dark:bg-white px-8 py-4.5 text-sm font-bold text-white dark:text-gray-900 shadow-xl shadow-gray-900/10 dark:shadow-white/5 hover:shadow-2xl transition-all hover:-translate-y-1 w-full sm:w-auto focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-indigo-500/50">
-                Explore Paths
-                <i class="fas fa-arrow-down transform group-hover:translate-y-1 transition-transform opacity-70"></i>
-            </a>
-            
-            <div class="relative group w-full sm:flex-1">
-                <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-500 -z-10"></div>
-                <input type="text" id="hero-search" aria-label="Search learning paths" placeholder="Search your journey..." 
-                    class="relative w-full bg-white/70 dark:bg-gray-900/60 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 rounded-2xl py-4 flex-1 px-6 pr-12 text-gray-900 dark:text-white font-semibold placeholder-gray-500 dark:placeholder-gray-400 focus:bg-white dark:focus:bg-gray-900 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-sm"
-                    oninput="syncSearch(this.value)">
-                <i class="fas fa-search absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-indigo-500 transition-colors pointer-events-none"></i>
-            </div>
-        </div>
-
         <!-- Quick Stats (Glass Cards) -->
         <div class="mt-24 grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl w-full mx-auto animate-reveal" style="animation-delay: 0.3s;">
             <div class="bg-white/40 dark:bg-black/20 backdrop-blur-2xl p-6 rounded-[1.5rem] border border-white/60 dark:border-white/5 flex flex-col items-center hover:bg-white/60 dark:hover:bg-white/5 transition-colors shadow-[0_8px_32px_rgba(0,0,0,0.02)]">
