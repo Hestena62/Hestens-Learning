@@ -174,11 +174,6 @@ include '../../src/header.php';
     animation: fadeIn 0.5s ease-in-out;
   }
 
-  /* Specific fix for Teacher Chapter in the reader flow */
-  #chapter-23:not(.teacher-mode #chapter-23) {
-    display: none !important;
-  }
-
   /* Ensure cards look good in both modes and aren't affected by global teacher-only styles */
   .teacher-only.chapter-section {
     border: none !important;
@@ -318,6 +313,13 @@ include '../../src/header.php';
   }
 </style>
 
+<!-- AURORA MESH BACKGROUND -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none noise-grain -z-10 bg-white dark:bg-gray-950 transition-colors duration-500">
+    <div class="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-[80px] opacity-40 will-change-transform bg-indigo-200 dark:bg-indigo-900/40"></div>
+    <div class="absolute top-[20%] -right-[10%] w-[60vw] h-[60vw] rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-[80px] opacity-40 style='animation-delay: -2s;' will-change-transform bg-purple-200 dark:bg-purple-900/40"></div>
+    <div class="absolute -bottom-[20%] left-[20%] w-[50vw] h-[50vw] rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-[80px] opacity-40 style='animation-delay: -4s;' will-change-transform bg-emerald-200 dark:bg-teal-900/40"></div>
+</div>
+
 <!-- Progress Bar -->
 <div id="progress-bar-container">
   <div id="progress-bar"></div>
@@ -329,49 +331,91 @@ include '../../src/header.php';
   <div id="reader-container">
 
     <!-- Title / Header -->
-    <header class="text-center mb-12 animate-fade-in-up">
-      <h1
-        class="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 mb-2">
-        1984</h1>
-      <p class="text-xl text-text-secondary">by George Orwell</p>
+    <header class="text-center mb-12 animate-reveal mt-12 flex flex-col items-center">
+            <!-- Pill Badge -->
+            <div class="inline-flex items-center gap-3 rounded-full bg-white/60 dark:bg-black/20 backdrop-blur-xl px-5 py-2 text-xs font-bold text-gray-800 dark:text-gray-200 mb-8 border border-black/5 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] justify-center max-w-fit mx-auto">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-500 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                </span>
+                <span class="tracking-[0.2em] uppercase"><i class="fas fa-book-open mr-2"></i> READER MODE</span>
+            </div>
+      <h1 class="text-5xl md:text-7xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 via-purple-500 to-emerald-400 mb-4 font-outfit leading-[0.95]">
+        1984
+      </h1>
+      <p class="text-xl font-bold text-gray-500 dark:text-gray-400">by George Orwell</p>
     </header>
 
     <!-- Fixed Controls Bar -->
     <nav id="reader-controls"
-      class="flex flex-col sm:flex-row justify-between items-center gap-4 border-b border-white/10 sticky top-0 z-50 py-4 mb-8">
+      class="flex flex-col sm:flex-row justify-between items-center gap-4 border border-gray-200 dark:border-white/10 sticky top-0 z-50 py-4 mb-12 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl shadow-lg rounded-3xl px-6 mx-auto">
 
       <!-- Left: Prev/Next -->
-      <div class="flex items-center gap-2 w-full sm:w-auto justify-center">
+      <div class="flex items-center gap-2 w-full sm:w-auto justify-center bg-gray-100 dark:bg-white/5 p-1.5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-inner">
         <button id="prev-chapter"
-          class="bg-white/10 hover:bg-white/20 text-text-default p-2 rounded-lg transition-colors disabled:opacity-50"
+          class="bg-white dark:bg-gray-800 text-gray-900 dark:text-white px-4 py-2 rounded-xl transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50 hover:bg-gray-50 dark:hover:bg-gray-700 font-bold"
           aria-label="Previous Chapter">
-          <i class="fas fa-chevron-left"></i>
+          <i class="fas fa-chevron-left text-sm"></i> Pre
         </button>
-        <span id="current-chapter" class="font-mono text-text-secondary font-bold px-4">Chapter 1</span>
+        <span id="current-chapter" class="font-bold text-sm text-gray-700 dark:text-gray-300 px-4 min-w-[100px] text-center uppercase tracking-widest leading-none">Ch 1</span>
         <button id="next-chapter"
-          class="bg-white/10 hover:bg-white/20 text-text-default p-2 rounded-lg transition-colors"
+          class="bg-white dark:bg-gray-800 text-gray-900 dark:text-white px-4 py-2 rounded-xl transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 hover:bg-gray-50 dark:hover:bg-gray-700 font-bold"
           aria-label="Next Chapter">
-          <i class="fas fa-chevron-right"></i>
+          Nxt <i class="fas fa-chevron-right text-sm"></i>
         </button>
       </div>
 
       <!-- Center: TTS -->
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-3">
         <button id="tts-speak-btn"
-          class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-lg font-bold shadow-md hover:shadow-lg transition-all flex items-center gap-2 text-sm">
-          <i class="fas fa-play"></i> Listen
+          class="bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-2.5 rounded-xl font-bold shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all flex items-center justify-center gap-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 border border-transparent flex-1 sm:flex-none">
+          <i class="fas fa-play"></i> Listen Voice
         </button>
         <button id="tts-stop-btn"
-          class="hidden bg-red-500 text-white px-4 py-2 rounded-lg font-bold shadow-md hover:shadow-lg transition-all items-center gap-2 text-sm">
-          <i class="fas fa-stop"></i> Stop
+          class="hidden bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 px-6 py-2.5 rounded-xl font-bold shadow-sm hover:bg-rose-100 dark:hover:bg-rose-500/20 transition-all items-center justify-center gap-2 text-sm border border-rose-200 dark:border-rose-500/30 flex-1 sm:flex-none">
+          <i class="fas fa-stop"></i> Stop Voice
         </button>
       </div>
 
-      <!-- Right: TOC -->
-      <button id="open-toc-modal"
-        class="text-text-secondary hover:text-primary transition-colors text-sm font-semibold uppercase tracking-wide">
-        <i class="fas fa-list-ol mr-1"></i> Chapters
-      </button>
+      <!-- Right: Tools & TOC -->
+      <div class="flex items-center gap-3 w-full sm:w-auto mt-2 sm:mt-0 relative">
+        <button id="open-vocab-btn"
+          class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 bg-emerald-50 dark:bg-emerald-500/10 py-2.5 px-4 rounded-xl border border-emerald-100 dark:border-emerald-500/20 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 flex-1 sm:flex-none" title="Study Guide">
+          <i class="fas fa-book-reader"></i>
+        </button>
+        <button id="open-settings-btn"
+          class="text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 transition-colors text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 bg-purple-50 dark:bg-purple-500/10 py-2.5 px-4 rounded-xl border border-purple-100 dark:border-purple-500/20 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 flex-1 sm:flex-none" title="Reader Settings">
+          <i class="fas fa-font"></i>
+        </button>
+        <button id="open-toc-modal"
+          class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 bg-indigo-50 dark:bg-indigo-500/10 py-2.5 px-6 rounded-xl border border-indigo-100 dark:border-indigo-500/20 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 flex-1 sm:flex-none">
+          <i class="fas fa-list-ol"></i> Chapters
+        </button>
+
+        <!-- Settings Dropdown Panel -->
+        <div id="settings-panel" class="absolute top-[120%] right-0 w-72 bg-white/95 dark:bg-gray-900/95 backdrop-blur-2xl rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] border border-gray-200 dark:border-white/10 p-6 hidden opacity-0 transition-all duration-300 transform scale-95 z-[100] text-left">
+            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Typography</h4>
+            <div class="flex gap-1.5 p-1 bg-gray-100 dark:bg-gray-800 rounded-xl mb-5">
+                <button class="flex-1 py-1.5 rounded-lg text-sm font-bold font-sans text-gray-900 dark:text-white bg-white dark:bg-gray-700 shadow-sm settings-font group" data-font="font-sans">Sans</button>
+                <button class="flex-1 py-1.5 rounded-lg text-sm font-bold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors settings-font font-serif group" data-font="font-serif">Serif</button>
+                <button class="flex-1 py-1.5 rounded-lg text-sm font-bold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors settings-font group" data-font="font-dyslexic" style="font-family: 'OpenDyslexic', sans-serif;">Dyslexic</button>
+            </div>
+            
+            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Text Size</h4>
+            <div class="flex gap-2 mb-5">
+                <button class="flex-1 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-white/10 rounded-xl text-gray-700 dark:text-gray-300 font-bold hover:bg-gray-100 dark:hover:bg-gray-700 font-serif text-sm transition-colors settings-size" data-size="prose-base">A-</button>
+                <button class="flex-1 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white font-bold bg-white dark:bg-gray-700 shadow-sm font-serif text-lg transition-colors border-indigo-500/50 settings-size" data-size="prose-lg">Aa</button>
+                <button class="flex-1 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-white/10 rounded-xl text-gray-700 dark:text-gray-300 font-bold hover:bg-gray-100 dark:hover:bg-gray-700 font-serif text-xl transition-colors settings-size" data-size="prose-2xl">A+</button>
+            </div>
+
+            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Theme</h4>
+            <div class="flex gap-3 justify-between px-2">
+                <button class="w-10 h-10 rounded-full bg-white border-2 border-indigo-500 shadow-sm flex items-center justify-center focus:outline-none settings-theme" data-theme="default" title="Default"><i class="fas fa-sun text-yellow-500 text-xs hidden"></i></button>
+                <button class="w-10 h-10 rounded-full bg-[#f4ecd8] border-2 border-transparent hover:border-gray-300 shadow-sm flex items-center justify-center focus:outline-none settings-theme" data-theme="theme-sepia" title="Sepia"></button>
+                <button class="w-10 h-10 rounded-full bg-black border-2 border-transparent hover:border-gray-600 shadow-sm flex items-center justify-center focus:outline-none settings-theme" data-theme="theme-oled" title="OLED Dark"></button>
+            </div>
+        </div>
+      </div>
     </nav>
 
     <!-- Book Content Area -->
@@ -1343,7 +1387,6 @@ include '../../src/header.php';
       </div>
 
       <!-- Chapter 3 -->
-
       <div id="chapter-3" class="chapter-section">
         <div class="chapter-title text-3xl font-bold text-center mb-8 text-primary">Chapter 3</div>
 
@@ -1608,7 +1651,6 @@ include '../../src/header.php';
       </div>
 
       <!-- Chapter 4 -->
-
       <div id="chapter-4" class="chapter-section">
         <div class="chapter-title text-3xl font-bold text-center mb-8 text-primary">Chapter 4</div>
 
@@ -1949,7 +1991,6 @@ include '../../src/header.php';
       </div>
 
       <!-- Chapter 5 -->
-
       <div id="chapter-5" class="chapter-section">
         <div class="chapter-title text-3xl font-bold text-center mb-8 text-primary">Chapter 5</div>
 
@@ -2464,7 +2505,6 @@ include '../../src/header.php';
       </div>
 
       <!-- Chapter 6 -->
-
       <div id="chapter-6" class="chapter-section">
         <div class="chapter-title text-3xl font-bold text-center mb-8 text-primary">Chapter 6</div>
 
@@ -2651,7 +2691,6 @@ include '../../src/header.php';
       </div>
 
       <!-- Chapter 7 -->
-
       <div id="chapter-7" class="chapter-section">
         <div class="chapter-title text-3xl font-bold text-center mb-8 text-primary">Chapter 7</div>
 
@@ -3033,7 +3072,6 @@ include '../../src/header.php';
       </div>
 
       <!-- Chapter 8 -->
-
       <div id="chapter-8" class="chapter-section">
         <div class="chapter-title text-3xl font-bold text-center mb-8 text-primary">Chapter 8</div>
 
@@ -10812,8 +10850,8 @@ include '../../src/header.php';
         </p>
       </div>
 
-      <!-- Teacher Resource Repository (Chapter 23) -->
-      <div id="chapter-23" class="chapter-section teacher-only not-prose">
+      <!-- Teacher Resource Repository (Chapter 26) -->
+      <div id="chapter-26" class="chapter-section not-prose">
         <div class="chapter-title text-3xl font-bold text-center mb-8 text-accent">Teacher Resources</div>
 
         <div class="max-w-4xl mx-auto pb-12">
@@ -10899,12 +10937,19 @@ include '../../src/header.php';
       <button class="toc-close" id="close-toc-modal" aria-label="Close menu">&times;</button>
     </div>
     <div class="toc-grid">
-      <?php for ($i = 1; $i <= 22; $i++): ?>
-        <a href="#" class="toc-link" data-chapter="<?php echo $i; ?>">CH <?php echo $i; ?></a>
+      <?php for ($i = 1; $i <= 25; $i++): ?>
+        <?php if ($i >= 9 && $i <= 25): ?>
+            <div class="p-3 text-center rounded border border-gray-200 dark:border-white/5 opacity-40 cursor-not-allowed bg-gray-50 dark:bg-gray-800 shadow-inner flex flex-col items-center justify-center gap-1" title="Chapter currently locked/missing">
+                <span class="font-bold text-sm">CH <?php echo $i; ?></span>
+                <i class="fas fa-lock text-xs text-gray-400"></i>
+            </div>
+        <?php else: ?>
+            <a href="#" class="toc-link" data-chapter="<?php echo $i; ?>">CH <?php echo $i; ?></a>
+        <?php endif; ?>
       <?php endfor; ?>
       <a href="#"
-        class="toc-link teacher-only bg-accent text-white font-bold rounded-xl p-4 flex items-center justify-center hover:scale-105 transition-all shadow-lg"
-        data-chapter="23" style="grid-column: span 2;">
+        class="toc-link bg-accent text-white font-bold rounded-xl p-4 flex items-center justify-center hover:scale-105 transition-all shadow-lg"
+        data-chapter="26" style="grid-column: span 2;">
         <i class="fas fa-chalkboard-teacher mr-2"></i> TEACHER RESOURCES
       </a>
     </div>
@@ -10916,6 +10961,56 @@ include '../../src/header.php';
   <i class="fas fa-arrow-up"></i>
 </button>
 
+<!-- Teacher Auth Modal -->
+<div id="teacher-auth-modal" class="fixed inset-0 z-[3000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md hidden transition-opacity duration-300 opacity-0">
+  <div class="bg-white dark:bg-gray-900 rounded-3xl p-8 max-w-md w-full shadow-2xl transform scale-95 transition-all duration-300 border border-gray-200 dark:border-white/10">
+    <div class="text-center mb-6">
+      <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/30 mb-4 shadow-inner">
+        <i class="fas fa-lock text-3xl text-indigo-600 dark:text-indigo-400"></i>
+      </div>
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Authorised Access Only</h3>
+      <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mt-2">What is Jenny's number?</p>
+    </div>
+    <div class="mt-4">
+      <input type="password" id="teacher-password-input" class="block w-full rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-4 text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 text-center text-xl tracking-[0.2em] font-mono shadow-inner transition-colors outline-none" placeholder="•••••••">
+      <p id="teacher-error-msg" class="text-rose-500 text-sm mt-3 text-center hidden font-bold animate-pulse">Incorrect answer. Access Denied.</p>
+    </div>
+    <div class="mt-8 flex gap-3">
+      <button id="teacher-cancel-btn" class="flex-1 rounded-xl bg-gray-100 dark:bg-gray-800 px-4 py-3 text-sm font-bold text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Cancel</button>
+      <button id="teacher-submit-btn" class="flex-1 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white hover:bg-indigo-700 shadow-md hover:-translate-y-0.5 active:scale-95 transition-all">Unlock</button>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Highlight Toolbar -->
+<div id="highlight-toolbar" class="fixed z-[200] hidden bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-1 py-1 rounded-xl shadow-2xl items-center gap-1 font-bold text-sm transform -translate-x-1/2 -translate-y-full transition-opacity duration-200 opacity-0 pointer-events-none">
+    <button id="hl-btn-mark" class="px-3 py-2 rounded-lg hover:bg-white/20 dark:hover:bg-black/10 transition-colors flex items-center gap-2 pointer-events-auto"><i class="fas fa-highlighter text-yellow-400"></i> Mark</button>
+    <div class="w-px h-5 bg-white/20 dark:bg-black/10"></div>
+    <button id="hl-btn-copy" class="px-3 py-2 rounded-lg hover:bg-white/20 dark:hover:bg-black/10 transition-colors flex items-center gap-2 pointer-events-auto"><i class="fas fa-copy text-blue-400"></i> Copy</button>
+</div>
+
+<!-- Vocab Modal -->
+<div id="vocab-modal" class="fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md hidden transition-opacity duration-300 opacity-0">
+  <div class="bg-white dark:bg-gray-900 rounded-3xl w-full max-w-2xl max-h-[80vh] flex flex-col shadow-2xl transform scale-95 transition-all duration-300 border border-gray-200 dark:border-white/10">
+    <div class="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-800">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+          <i class="fas fa-book-reader"></i>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white leading-none">Study Guide</h3>
+          <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">Current Chapter Vocabulary</p>
+        </div>
+      </div>
+      <button id="close-vocab-modal" class="text-gray-400 hover:text-gray-600 dark:hover:text-white bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 w-8 h-8 rounded-full flex items-center justify-center transition-colors">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div id="vocab-list-container" class="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
+      <!-- Injected Vocab Cards -->
+    </div>
+  </div>
+</div>
 
 <!-- Scripts -->
 <script>
@@ -10925,6 +11020,7 @@ include '../../src/header.php';
     let currentChapter = 1;
     const BOOK_ID = '1984_lastChapter';
     const chapters = document.querySelectorAll('.chapter-section');
+    const actualChapters = Array.from(chapters).map(c => parseInt(c.id.replace('chapter-',''), 10)).sort((a,b)=>a-b);
     const totalChapters = chapters.length;
 
     // --- TTS Ssetup ---
@@ -10934,38 +11030,106 @@ include '../../src/header.php';
 
     // --- Load Progress ---
     try {
-      const saved = localStorage.getItem(BOOK_ID);
-      if (saved) currentChapter = parseInt(saved, 10);
+      const hashMatch = window.location.hash.match(/#chapter-(\d+)/);
+      if (hashMatch) {
+        currentChapter = parseInt(hashMatch[1], 10);
+      } else {
+        const saved = localStorage.getItem(BOOK_ID);
+        if (saved) currentChapter = parseInt(saved, 10);
+      }
     } catch (e) { }
 
     // --- Functions ---
+    const authModal = document.getElementById('teacher-auth-modal');
+    const authInput = document.getElementById('teacher-password-input');
+    const authSubmit = document.getElementById('teacher-submit-btn');
+    const authCancel = document.getElementById('teacher-cancel-btn');
+    const authError = document.getElementById('teacher-error-msg');
+    let pendingChapter = null;
+
+    function showAuthModal(num) {
+        pendingChapter = num;
+        authModal.classList.remove('hidden');
+        // trigger reflow
+        void authModal.offsetWidth;
+        authModal.classList.remove('opacity-0');
+        authModal.firstElementChild.classList.remove('scale-95');
+        authInput.value = '';
+        authError.classList.add('hidden');
+        authInput.focus();
+    }
+
+    function hideAuthModal() {
+        authModal.classList.add('opacity-0');
+        authModal.firstElementChild.classList.add('scale-95');
+        setTimeout(() => {
+            authModal.classList.add('hidden');
+        }, 300);
+    }
+
+    authSubmit.onclick = () => {
+        if (authInput.value.trim() === '8675309') {
+            window.teacherUnlocked = true;
+            hideAuthModal();
+            if(pendingChapter) actuallyShowChapter(pendingChapter);
+        } else {
+            authError.classList.remove('hidden');
+            authInput.value = '';
+            authInput.focus();
+        }
+    };
+    
+    authCancel.onclick = () => {
+        hideAuthModal();
+    };
+
+    authInput.onkeydown = (e) => {
+        if(e.key === 'Enter') authSubmit.click();
+        if(e.key === 'Escape') hideAuthModal();
+    };
 
     function showChapter(num) {
-      // Dynamic bounds check: If teacher mode is off, limit is 22. If on, limit is 23.
-      const isTeacherMode = document.body.classList.contains('teacher-mode');
-      const maxVal = isTeacherMode ? totalChapters : 22;
+      let maxVal = 26; // Hardcode max to 26 now that we bumped it
 
       if (num < 1) num = 1;
       if (num > maxVal) num = maxVal;
+
+      if (num === 26) {
+        if (!window.teacherUnlocked) {
+          showAuthModal(num);
+          return;
+        }
+      }
+
+      actuallyShowChapter(num);
+    }
+
+    function actuallyShowChapter(num) {
+      let maxVal = 26;
       currentChapter = num;
 
       // UI Update
       chapters.forEach(c => c.classList.remove('active'));
       const active = document.getElementById('chapter-' + num);
-      if (active) active.classList.add('active');
+      if (active) {
+          active.classList.add('active');
+      }
 
-      // Controls Update - Special title for Chapter 23
-      const chapterLabel = (num === 23) ? 'Teacher Resources' : 'Chapter ' + num;
+      // Controls Update
+      const chapterLabel = (num === 26) ? 'Teacher Resources' : 'Chapter ' + num;
       document.getElementById('current-chapter').innerText = chapterLabel;
 
-      document.getElementById('prev-chapter').disabled = (num === 1);
-      document.getElementById('next-chapter').disabled = (num === maxVal);
+      document.getElementById('prev-chapter').disabled = (num === actualChapters[0]);
+      document.getElementById('next-chapter').disabled = (num === actualChapters[actualChapters.length-1]);
 
       // Scroll Top
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
       // Save
       try { localStorage.setItem(BOOK_ID, num); } catch (e) { }
+
+      // Update URL
+      try { history.replaceState(null, '', '#chapter-' + num); } catch (e) { }
 
       // Update TOC Highlight
       document.querySelectorAll('.toc-link').forEach(link => {
@@ -11004,33 +11168,92 @@ include '../../src/header.php';
     });
 
     // --- Event Listeners ---
-    document.getElementById('prev-chapter').onclick = () => showChapter(currentChapter - 1);
-    document.getElementById('next-chapter').onclick = () => showChapter(currentChapter + 1);
+    function getNextChapter(num) {
+        const idx = actualChapters.indexOf(num);
+        return idx !== -1 && idx < actualChapters.length - 1 ? actualChapters[idx+1] : actualChapters[actualChapters.length-1];
+    }
+    
+    function getPrevChapter(num) {
+        const idx = actualChapters.indexOf(num);
+        return idx !== -1 && idx > 0 ? actualChapters[idx-1] : actualChapters[0];
+    }
+
+    document.getElementById('prev-chapter').onclick = () => showChapter(getPrevChapter(currentChapter));
+    document.getElementById('next-chapter').onclick = () => showChapter(getNextChapter(currentChapter));
+
+    window.addEventListener('hashchange', () => {
+        const hashMatch = window.location.hash.match(/#chapter-(\d+)/);
+        if (hashMatch) {
+            const hNum = parseInt(hashMatch[1], 10);
+            if (hNum !== currentChapter && hNum >= 1 && hNum <= 26) {
+                showChapter(hNum);
+            }
+        }
+    });
 
     // --- TTS Logic ---
     if ('speechSynthesis' in window) {
+      let activeTextNodes = [];
+      let currentParaIndex = -1;
+
       speakBtn.onclick = () => {
         const active = document.querySelector('.chapter-section.active');
         if (!active) return;
+        
+        // Custom Read Along logic
+        // Get all paragraphs in the active chapter to highlight sequentially
+        const paras = Array.from(active.querySelectorAll('p, h1, h2, h3'));
+        activeTextNodes = paras;
+        currentParaIndex = 0;
 
-        // Text prep (remove tooltips)
-        const clone = active.cloneNode(true);
-        clone.querySelectorAll('.tooltiptext').forEach(t => t.remove());
+        const fullText = paras.map(p => {
+             // clean tooltips from the text clone
+             const clone = p.cloneNode(true);
+             clone.querySelectorAll('.tooltiptext').forEach(t => t.remove());
+             return clone.textContent.trim();
+        }).join(" ... "); // Give the engine a pause between paras
 
-        utterance.text = clone.textContent;
+        utterance.text = fullText;
         window.speechSynthesis.speak(utterance);
-
+        
         speakBtn.classList.add('hidden');
         stopBtn.classList.remove('hidden');
       };
 
+      utterance.onboundary = (e) => {
+         // Advanced sync: approximate the paragraph based on char index
+         let accumulated = 0;
+         for(let i=0; i<activeTextNodes.length; i++) {
+             const clone = activeTextNodes[i].cloneNode(true);
+             clone.querySelectorAll('.tooltiptext').forEach(t => t.remove());
+             const len = clone.textContent.trim().length;
+             
+             if (e.charIndex >= accumulated && e.charIndex <= accumulated + len + 5) {
+                 if(currentParaIndex !== i) {
+                     // remove old highlight
+                     if(activeTextNodes[currentParaIndex]) activeTextNodes[currentParaIndex].classList.remove('bg-indigo-100', 'dark:bg-indigo-900/40', 'rounded-xl', 'px-2', 'py-1', 'transition-colors', 'duration-500');
+                     currentParaIndex = i;
+                     // add new highlight
+                     activeTextNodes[currentParaIndex].classList.add('bg-indigo-100', 'dark:bg-indigo-900/40', 'rounded-xl', 'px-2', 'py-1', 'transition-colors', 'duration-500');
+                     
+                     // smooth scroll to match engine
+                     activeTextNodes[currentParaIndex].scrollIntoView({behavior: 'smooth', block: 'center'});
+                 }
+                 break;
+             }
+             accumulated += len + 5;
+         }
+      };
+
       stopBtn.onclick = () => {
         window.speechSynthesis.cancel();
+        if(activeTextNodes[currentParaIndex]) activeTextNodes[currentParaIndex].classList.remove('bg-indigo-100', 'dark:bg-indigo-900/40', 'rounded-xl', 'px-2', 'py-1', 'transition-colors', 'duration-500');
         speakBtn.classList.remove('hidden');
         stopBtn.classList.add('hidden');
       };
 
       utterance.onend = () => {
+        if(activeTextNodes[currentParaIndex]) activeTextNodes[currentParaIndex].classList.remove('bg-indigo-100', 'dark:bg-indigo-900/40', 'rounded-xl', 'px-2', 'py-1', 'transition-colors', 'duration-500');
         speakBtn.classList.remove('hidden');
         stopBtn.classList.add('hidden');
       };
@@ -11108,6 +11331,162 @@ include '../../src/header.php';
       });
     }
 
+    // --- Highlighting Logic ---
+    const bookContent = document.getElementById('book-content');
+    const hlToolbar = document.getElementById('highlight-toolbar');
+    const hlMarkBtn = document.getElementById('hl-btn-mark');
+    const hlCopyBtn = document.getElementById('hl-btn-copy');
+    let currentSelectionRange = null;
+
+    document.addEventListener('selectionchange', () => {
+      const selection = window.getSelection();
+      if (!selection.rangeCount || selection.isCollapsed) {
+        hlToolbar.classList.add('opacity-0', 'pointer-events-none');
+        return;
+      }
+      
+      const range = selection.getRangeAt(0);
+      if (!bookContent.contains(range.commonAncestorContainer)) {
+        hlToolbar.classList.add('opacity-0', 'pointer-events-none');
+        return;
+      }
+
+      currentSelectionRange = range;
+      const rect = range.getBoundingClientRect();
+      
+      // Position toolbar slightly above selection
+      hlToolbar.style.left = `${rect.left + rect.width / 2}px`;
+      hlToolbar.style.top = `${rect.top - 10}px`;
+      
+      hlToolbar.classList.remove('hidden');
+      void hlToolbar.offsetWidth;
+      hlToolbar.classList.remove('opacity-0', 'pointer-events-none');
+    });
+
+    hlMarkBtn.onclick = () => {
+      if (!currentSelectionRange) return;
+      try {
+        const mark = document.createElement('mark');
+        mark.className = 'bg-yellow-200/60 dark:bg-yellow-500/40 rounded px-1 transition-colors cursor-pointer hover:bg-yellow-300/60 dark:hover:bg-yellow-400/50 mix-blend-multiply dark:mix-blend-overlay';
+        currentSelectionRange.surroundContents(mark);
+        window.getSelection().removeAllRanges();
+      } catch (e) {
+        console.log("Highlighting crossed boundaries", e);
+      }
+      hlToolbar.classList.add('opacity-0', 'pointer-events-none');
+    };
+
+    hlCopyBtn.onclick = () => {
+      if (!currentSelectionRange) return;
+      navigator.clipboard.writeText(currentSelectionRange.toString()).then(() => {
+        const ogIcon = hlCopyBtn.innerHTML;
+        hlCopyBtn.innerHTML = '<i class="fas fa-check text-green-400"></i> Copied';
+        setTimeout(() => hlCopyBtn.innerHTML = ogIcon, 1500);
+      });
+    };
+
+    // --- Settings Panel Logic ---
+    const settingsBtn = document.getElementById('open-settings-btn');
+    const settingsPanel = document.getElementById('settings-panel');
+    let settingsOpen = false;
+
+    settingsBtn.onclick = (e) => {
+        e.stopPropagation();
+        settingsOpen = !settingsOpen;
+        if(settingsOpen) {
+            settingsPanel.classList.remove('hidden');
+            void settingsPanel.offsetWidth;
+            settingsPanel.classList.remove('opacity-0', 'scale-95');
+        } else {
+            closeSettings();
+        }
+    };
+
+    function closeSettings() {
+        settingsOpen = false;
+        settingsPanel.classList.add('opacity-0', 'scale-95');
+        setTimeout(() => settingsPanel.classList.add('hidden'), 300);
+    }
+    document.addEventListener('click', (e) => {
+        if(settingsOpen && !settingsPanel.contains(e.target) && e.target !== settingsBtn) closeSettings();
+    });
+
+    // Theme states
+    const PREFS_KEY = '1984_prefs';
+    let prefs = JSON.parse(localStorage.getItem(PREFS_KEY) || '{"font":"font-sans", "size":"prose-lg", "theme":"default"}');
+
+    function applyPrefs() {
+        bookContent.classList.remove('font-sans', 'font-serif', 'font-dyslexic', 'prose-base', 'prose-lg', 'prose-2xl');
+        document.body.classList.remove('theme-sepia', 'theme-oled');
+        
+        bookContent.classList.add(prefs.font);
+        bookContent.classList.add(prefs.size);
+        if(prefs.theme !== 'default') document.body.classList.add(prefs.theme);
+
+        document.querySelectorAll('.settings-font, .settings-size, .settings-theme').forEach(el => {
+            el.classList.remove('ring-2', 'ring-indigo-500', 'bg-white', 'dark:bg-gray-700', 'shadow-sm');
+            if(el.dataset.font === prefs.font || el.dataset.size === prefs.size || el.dataset.theme === prefs.theme) {
+                if(el.classList.contains('settings-theme')) el.classList.add('ring-2', 'ring-offset-2', 'ring-indigo-500');
+                else el.classList.add('bg-white', 'dark:bg-gray-700', 'shadow-sm');
+            }
+        });
+        localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+    }
+
+    document.querySelectorAll('.settings-font').forEach(btn => btn.onclick = () => { prefs.font = btn.dataset.font; applyPrefs(); });
+    document.querySelectorAll('.settings-size').forEach(btn => btn.onclick = () => { prefs.size = btn.dataset.size; applyPrefs(); });
+    document.querySelectorAll('.settings-theme').forEach(btn => btn.onclick = () => { prefs.theme = btn.dataset.theme; applyPrefs(); });
+    applyPrefs(); 
+
+    // --- Vocab Modal Logic ---
+    const vocabModal = document.getElementById('vocab-modal');
+    const vocabBtn = document.getElementById('open-vocab-btn');
+    const closeVocabBtn = document.getElementById('close-vocab-modal');
+    const vocabList = document.getElementById('vocab-list-container');
+
+    vocabBtn.onclick = () => {
+        vocabList.innerHTML = '';
+        const activeChapterEl = document.querySelector('.chapter-section.active');
+        if(!activeChapterEl) return;
+
+        const tooltips = activeChapterEl.querySelectorAll('.tooltip');
+        const vocabMap = {};
+
+        tooltips.forEach(tt => {
+            const termNode = Array.from(tt.childNodes).find(n => n.nodeType === 3 || (n.nodeType === 1 && !n.classList.contains('tooltiptext')));
+            const term = termNode ? termNode.textContent.trim() : '';
+            const defNode = tt.querySelector('.tooltiptext');
+            const defText = defNode ? defNode.textContent.replace(/\s+/g, ' ').trim() : '';
+            if(term && defText) vocabMap[term.toLowerCase()] = { term, defText };
+        });
+
+        const vocabArray = Object.values(vocabMap).sort((a,b) => a.term.localeCompare(b.term));
+
+        if(vocabArray.length === 0) {
+            vocabList.innerHTML = '<div class="text-center p-8 text-gray-500"><i class="fas fa-ghost text-4xl mb-4 opacity-50"></i><p>No specialized vocabulary found in this chapter.</p></div>';
+        } else {
+            vocabArray.forEach(v => {
+                vocabList.innerHTML += `
+                    <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-2xl border border-gray-200 dark:border-white/5 shadow-sm">
+                        <h4 class="text-lg font-bold text-indigo-600 dark:text-indigo-400 mb-2 capitalize font-serif">${v.term}</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">${v.defText}</p>
+                    </div>
+                `;
+            });
+        }
+
+        vocabModal.classList.remove('hidden');
+        void vocabModal.offsetWidth;
+        vocabModal.classList.remove('opacity-0');
+        vocabModal.firstElementChild.classList.remove('scale-95');
+    };
+
+    closeVocabBtn.onclick = () => {
+        vocabModal.classList.add('opacity-0');
+        vocabModal.firstElementChild.classList.add('scale-95');
+        setTimeout(() => vocabModal.classList.add('hidden'), 300);
+    };
+9
     // Init
     initTooltipButtons();
     showChapter(currentChapter);

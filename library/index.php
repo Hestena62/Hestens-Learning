@@ -43,9 +43,6 @@ include '../src/header.php';
                 The
                 <span class="text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 via-purple-500 to-emerald-400">Library</span>
             </h1>
-            <p class="mt-6 text-xl md:text-2xl leading-relaxed text-gray-600 dark:text-gray-300/80 max-w-2xl mx-auto mb-14 font-medium backdrop-blur-sm">
-                <?php echo $welcomeParagraph; ?>
-            </p>
         </div>
 
         <!-- Real-time Search and Filters -->
