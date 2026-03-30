@@ -18,92 +18,83 @@ if (!$categories) {
 include '../src/header.php';
 ?>
 
-<!-- HERO BACKGROUND -->
-<!-- We remove the fixed hardcoded dark background so the body background from styles.css shows through. 
-     We can add a subtle decorative layer that respects the theme. -->
-<div class="fixed inset-0 -z-10 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 pointer-events-none">
-    <div
-        class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 animate-pulse">
-    </div>
+<!-- AURORA MESH BACKGROUND -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none noise-grain -z-10 bg-white dark:bg-gray-950 transition-colors duration-500">
+    <div class="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-[80px] opacity-40 will-change-transform bg-indigo-200 dark:bg-indigo-900/40"></div>
+    <div class="absolute top-[20%] -right-[10%] w-[60vw] h-[60vw] rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-[80px] opacity-40 style='animation-delay: -2s;' will-change-transform bg-purple-200 dark:bg-purple-900/40"></div>
+    <div class="absolute -bottom-[20%] left-[20%] w-[50vw] h-[50vw] rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-[80px] opacity-40 style='animation-delay: -4s;' will-change-transform bg-emerald-200 dark:bg-teal-900/40"></div>
 </div>
 
 <main id="main-content" class="min-h-screen relative z-10 font-sans pb-20">
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-12 text-center px-4">
-        <div class="animate-fade-in-up">
-            <div
-                class="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-content-bg mb-6 border shadow-xl text-primary">
-                <i class="fas fa-book-reader text-4xl"></i>
+    <section class="relative pt-32 pb-12 text-center px-4 flex flex-col items-center">
+        <div class="animate-reveal">
+            <!-- Pill Badge -->
+            <div class="inline-flex items-center gap-3 rounded-full bg-white/60 dark:bg-black/20 backdrop-blur-xl px-5 py-2 text-xs font-bold text-gray-800 dark:text-gray-200 mb-10 border border-black/5 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] justify-center max-w-fit mx-auto">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-500 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                </span>
+                <span class="tracking-[0.2em] uppercase"><i class="fas fa-book-reader mr-2"></i> DIGITAL ARCHIVE</span>
             </div>
-            <h1 class="text-5xl md:text-6xl font-black text-text-default mb-6 tracking-tight drop-shadow-md">
-                The <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Library</span>
+
+            <h1 class="text-6xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter text-gray-900 dark:text-white mb-8 font-outfit leading-[0.95]">
+                The
+                <span class="text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 via-purple-500 to-emerald-400">Library</span>
             </h1>
-            <p class="text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
+            <p class="mt-6 text-xl md:text-2xl leading-relaxed text-gray-600 dark:text-gray-300/80 max-w-2xl mx-auto mb-14 font-medium backdrop-blur-sm">
                 <?php echo $welcomeParagraph; ?>
             </p>
         </div>
 
         <!-- Real-time Search and Filters -->
-        <div class="mt-12 max-w-4xl mx-auto flex flex-col md:flex-row gap-4 relative group animate-fade-in-up"
-            style="animation-delay: 0.1s;">
-            <div
-                class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-xl opacity-20 blur-lg transition duration-300">
+        <div class="mt-8 max-w-4xl mx-auto w-full flex flex-col md:flex-row items-center gap-4 relative group animate-reveal" style="animation-delay: 0.1s;">
+            <!-- Redesigned Search bar -->
+            <div class="relative w-full md:w-2/3 group">
+                <input type="text" id="library-search" aria-label="Search Library" placeholder="Search title, author, or ISBN..."
+                    class="w-full pl-12 pr-12 py-4 rounded-2xl border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-black/40 backdrop-blur-2xl text-gray-900 dark:text-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-all font-semibold placeholder-gray-500 dark:placeholder-gray-400 text-lg shadow-[0_8px_32px_rgba(0,0,0,0.04)] hover:bg-white/80 dark:hover:bg-white/10 glass-shine focus:outline-none">
+                <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-indigo-500 transition-colors pointer-events-none text-lg"></i>
             </div>
-
-            <div class="relative flex-grow flex items-center bg-content-bg border rounded-xl p-2 shadow-xl">
-                <i class="fas fa-search text-text-secondary ml-4 text-lg"></i>
-                <input type="text" id="library-search" placeholder="Search title, author, or ISBN..."
-                    class="w-full bg-transparent border-none text-text-default placeholder-text-secondary px-4 py-3 focus:ring-0 focus:outline-none text-lg">
-            </div>
-
-            <div class="relative flex gap-2">
-                <select id="category-filter"
-                    class="bg-content-bg border text-text-default rounded-xl px-4 py-3 shadow-xl focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
+            
+            <div class="w-full md:w-1/3 flex gap-2 h-full relative">
+                 <select id="category-filter" aria-label="Select Category"
+                    class="appearance-none w-full h-full min-h-[56px] bg-white/60 dark:bg-black/40 backdrop-blur-2xl border border-gray-200 dark:border-white/10 rounded-2xl py-3 px-4 pr-10 text-gray-900 dark:text-white font-bold focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-[0_8px_32px_rgba(0,0,0,0.04)] hover:bg-white/80 dark:hover:bg-white/10 glass-shine transition-all cursor-pointer">
                     <option value="all">All Categories</option>
                     <?php foreach (array_keys($categories) as $cat)
                         echo '<option value="' . htmlspecialchars($cat) . '">' . htmlspecialchars($cat) . '</option>'; ?>
                 </select>
-                <select id="sort-filter"
-                    class="bg-content-bg border text-text-default rounded-xl px-4 py-3 shadow-xl focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
-                    <option value="default">Default Order</option>
-                    <option value="title-asc">Title (A-Z)</option>
-                    <option value="author-asc">Author (A-Z)</option>
-                </select>
+                <i class="fas fa-filter absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
             </div>
         </div>
     </section>
 
     <!-- Library Content -->
-    <div class="container mx-auto px-4 md:px-8 space-y-16">
+    <div class="container mx-auto px-4 md:px-8 space-y-20">
 
         <?php foreach ($categories as $categoryName => $books): ?>
-            <section class="library-category animate-fade-in-up">
+            <section class="library-category animate-reveal">
+                <!-- Category Header -->
                 <div class="flex items-center gap-4 mb-8">
-                    <h2 class="text-2xl font-bold text-text-default border-l-4 border-primary pl-4">
+                    <h2 class="text-3xl font-black text-gray-900 dark:text-white font-outfit tracking-tight">
                         <?php echo htmlspecialchars($categoryName); ?>
                     </h2>
-                    <div class="h-px bg-text-secondary/20 flex-grow"></div>
-                    <div class="flex gap-2">
-                        <button
-                            class="scroll-btn left rounded-full w-8 h-8 flex items-center justify-center bg-content-bg border hover:bg-primary hover:text-white transition-colors text-text-secondary shadow-sm"
-                            aria-label="Scroll left">
+                    <div class="h-px bg-gray-200 dark:bg-white/10 flex-grow rounded-full"></div>
+                    <div class="flex gap-2 shrink-0">
+                        <button class="scroll-btn left w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 flex items-center justify-center transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 shadow-sm border border-gray-200 dark:border-white/5" aria-label="Scroll left">
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <button
-                            class="scroll-btn right rounded-full w-8 h-8 flex items-center justify-center bg-content-bg border hover:bg-primary hover:text-white transition-colors text-text-secondary shadow-sm"
-                            aria-label="Scroll right">
+                        <button class="scroll-btn right w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 flex items-center justify-center transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 shadow-sm border border-gray-200 dark:border-white/5" aria-label="Scroll right">
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
                 </div>
 
                 <!-- Horizontal Scroll Container -->
-                <div class="flex overflow-x-auto gap-6 pb-8 pt-2 scrollbar-hide snap-x book-container">
+                <div class="flex overflow-x-auto gap-8 pb-8 pt-2 scrollbar-none snap-x book-container px-2">
                     <?php foreach ($books as $book): ?>
-                        <!-- Book Card -->
-                        <div class="book-card flex-shrink-0 w-48 md:w-56 snap-start group cursor-pointer relative"
+                        <!-- Book Card based on new design specs -->
+                        <div class="book-card flex-shrink-0 w-48 md:w-56 snap-start group cursor-pointer relative flex flex-col h-full"
                             onclick="openModal(this)" data-title="<?php echo htmlspecialchars($book['title']); ?>"
                             data-author="<?php echo htmlspecialchars($book['author']); ?>"
                             data-isbn="<?php echo htmlspecialchars($book['isbn']); ?>"
@@ -118,28 +109,25 @@ include '../src/header.php';
                             data-word-link="<?php echo htmlspecialchars($book['word-link'] ?? '#'); ?>"
                             data-lexile="<?php echo htmlspecialchars($book['lexile'] ?? ''); ?>">
 
-                            <!-- Cover Image Wrapper -->
-                            <div
-                                class="relative aspect-[2/3] rounded-xl overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-2 border">
+                            <!-- Cover Image Wrapper with hover lifting action -->
+                            <div class="relative aspect-[2/3] rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-white/10 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-indigo-500/20 group-hover:-translate-y-2 will-animate bg-gray-100 dark:bg-gray-800">
                                 <img src="<?php echo htmlspecialchars($book['img']); ?>"
-                                    alt="<?php echo htmlspecialchars($book['title']); ?>" class="w-full h-full object-cover"
+                                    alt="<?php echo htmlspecialchars($book['title']); ?>" class="w-full h-full object-cover relative z-10 transition-transform duration-500 group-hover:scale-105"
                                     loading="lazy"
                                     onerror="this.onerror=null; this.src='<?php echo isset($book['fallback-img']) ? htmlspecialchars($book['fallback-img']) : 'https://placehold.co/300x450/6b7280/white?text=Image+Not+Found'; ?>';">
 
-                                <!-- Hover Overlay -->
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                                    <span class="text-white text-xs font-bold uppercase tracking-wider mb-1"><i
-                                            class="fas fa-book-open mr-1"></i> View Details</span>
+                                <!-- Hover Overlay Info -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 z-20">
+                                    <span class="text-white text-[10px] font-bold uppercase tracking-widest mb-1 flex items-center gap-1.5"><i class="fas fa-book-open text-indigo-400"></i> View Details</span>
                                 </div>
                             </div>
 
                             <!-- Info (Below Card) -->
-                            <div class="mt-4 text-center">
-                                <h3 class="text-text-default font-bold text-lg leading-tight truncate px-1 book-title">
+                            <div class="mt-5 text-center px-1 flex-grow flex flex-col">
+                                <h3 class="text-gray-900 dark:text-white font-black text-lg font-outfit leading-tight line-clamp-2 book-title group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                                     <?php echo htmlspecialchars($book['title']); ?>
                                 </h3>
-                                <p class="text-text-secondary text-sm mt-1 book-author">
+                                <p class="text-gray-500 dark:text-gray-400 text-sm mt-1.5 font-medium book-author truncate">
                                     <?php echo htmlspecialchars($book['author']); ?>
                                 </p>
                             </div>
@@ -150,93 +138,113 @@ include '../src/header.php';
         <?php endforeach; ?>
 
         <!-- No Results Message -->
-        <div id="no-results" class="hidden text-center py-20">
-            <i class="fas fa-search mb-4 text-4xl text-text-secondary/50"></i>
-            <h3 class="text-xl font-bold text-text-secondary">No books found matching your search.</h3>
+        <div id="no-results" class="hidden text-center py-24 px-4 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md rounded-3xl border border-dashed border-gray-300 dark:border-gray-700 mx-auto max-w-4xl will-animate">
+            <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gray-100 dark:bg-gray-800/50 mb-8 text-indigo-500/50 shadow-inner relative">
+                <i class="fas fa-search text-5xl"></i>
+                <div class="absolute inset-0 bg-indigo-500/10 rounded-full animate-ping opacity-20" style="animation-duration: 3s;"></div>
+            </div>
+            <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-2 font-outfit tracking-tight">No books found</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">We couldn't find anything matching your search criteria.</p>
         </div>
 
     </div>
 
 </main>
 
-<!-- Book Modal -->
+<!-- Book Modal (Refined as Knowledge Portal) -->
 <div id="bookModal"
-    class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"
-    role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="closeModal()">
-    <div class="bg-content-bg border rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4 relative flex flex-col md:flex-row overflow-hidden"
+    class="fixed inset-0 z-[100] hidden opacity-0 transition-all duration-500 flex items-center justify-center p-4 sm:p-6 sm:pb-12 pointer-events-none"
+    role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-gray-900/40 dark:bg-black/60 backdrop-blur-sm transition-opacity cursor-pointer pointer-events-auto" onclick="closeModal()"></div>
+
+    <!-- Modal Content -->
+    <div class="bg-white dark:bg-[#0a0a0a] rounded-3xl relative w-full max-w-4xl max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-500 book-modal-content pointer-events-auto flex flex-col border border-gray-200 dark:border-white/10 shadow-2xl custom-modal-scrollbar"
         onclick="event.stopPropagation()">
 
-        <!-- Close Button -->
+        <!-- Close Button Top -->
         <button onclick="closeModal()" id="book-modal-close"
-            class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-base-bg text-text-default hover:bg-primary hover:text-white transition-colors flex items-center justify-center border shadow-sm">
-            <i class="fas fa-times"></i>
+            class="absolute top-6 right-6 z-50 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 flex items-center justify-center transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 shadow-sm backdrop-blur-md">
+            <i class="fas fa-times text-lg"></i>
         </button>
 
-        <!-- Book Cover Side -->
-        <div class="w-full md:w-1/3 relative h-64 md:h-auto">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-10"></div>
-            <img id="modal-img" src="" alt="Book Cover" class="w-full h-full object-cover">
-        </div>
-
-        <!-- Details Side -->
-        <div class="w-full md:w-2/3 p-8 md:p-10 flex flex-col">
-            <div class="mb-6">
-                <h2 id="modal-title" class="text-3xl md:text-4xl font-black text-text-default mb-2 leading-tight"></h2>
-                <p id="modal-author" class="text-xl text-primary font-medium"></p>
+        <div class="flex flex-col md:flex-row h-full">
+            <!-- Book Cover Side -->
+            <div class="w-full md:w-5/12 relative h-72 md:h-auto shrink-0 bg-gray-100 dark:bg-gray-900 flex items-center justify-center p-8 md:p-12 border-b md:border-b-0 md:border-r border-gray-200 dark:border-white/5">
+                <!-- Subtle background glow -->
+                <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-transparent pointer-events-none blur-2xl"></div>
+                <img id="modal-img" src="" alt="Book Cover" class="w-full max-h-full object-contain rounded-xl shadow-2xl relative z-10 transition-transform hover:scale-105 duration-500">
             </div>
 
-            <div class="grid grid-cols-2 gap-4 mb-6 text-sm text-text-secondary bg-base-bg p-4 rounded-xl border">
-                <div>
-                    <span class="block text-xs uppercase tracking-wider opacity-50 mb-1">Published</span>
-                    <span id="modal-date" class="text-text-default font-mono"></span>
+            <!-- Details Side -->
+            <div class="w-full md:w-7/12 p-8 md:p-10 flex flex-col relative z-20 bg-gray-50/50 dark:bg-transparent">
+                <!-- Titles -->
+                <div class="mb-8">
+                    <div class="flex items-center gap-2 mb-3">
+                         <span class="w-8 h-1 bg-indigo-500 rounded-full opacity-70"></span>
+                         <span class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">Library Access</span>
+                    </div>
+                    <h2 id="modal-title" class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white font-outfit mb-2 leading-tight tracking-tight"></h2>
+                    <p id="modal-author" class="text-xl text-indigo-600 dark:text-indigo-400 font-bold"></p>
                 </div>
-                <div>
-                    <span class="block text-xs uppercase tracking-wider opacity-50 mb-1">ISBN</span>
-                    <span id="modal-isbn" class="text-text-default font-mono"></span>
-                </div>
-                <div id="modal-lexile-container" class="col-span-2 border-t pt-3 mt-1">
-                    <span class="block text-xs uppercase tracking-wider opacity-50 mb-1">Lexile / Reading Level</span>
-                    <span id="modal-lexile" class="text-green-600 dark:text-green-400 font-bold"></span>
-                </div>
-            </div>
 
-            <div class="flex-grow">
-                <p id="modal-description" class="text-text-default leading-relaxed text-lg"></p>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="mt-8 pt-6 border-t flex flex-col gap-4">
-                <div class="flex flex-wrap gap-4">
-                    <a id="modal-read-online-link" href="#"
-                        class="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-3 px-6 rounded-xl font-bold text-center shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
-                        <i class="fas fa-book-open"></i> Read Online
-                    </a>
-
-                    <div class="flex gap-2">
-                        <a id="modal-pdf-link" href="#"
-                            class="bg-base-bg hover:bg-primary/10 text-text-default p-3 rounded-xl border transition-colors tooltip-btn"
-                            title="Download PDF">
-                            <i class="fas fa-file-pdf text-red-500"></i>
-                        </a>
-                        <a id="modal-epub-link" href="#"
-                            class="bg-base-bg hover:bg-primary/10 text-text-default p-3 rounded-xl border transition-colors tooltip-btn"
-                            title="Download ePUB">
-                            <i class="fas fa-book text-blue-500"></i>
-                        </a>
-                        <a id="modal-mobi-link" href="#"
-                            class="bg-base-bg hover:bg-primary/10 text-text-default p-3 rounded-xl border transition-colors tooltip-btn"
-                            title="Download MOBI">
-                            <i class="fas fa-tablet-alt text-orange-500"></i>
-                        </a>
+                <!-- Specs Grid -->
+                <div class="grid grid-cols-2 gap-4 mb-8 p-6 bg-white dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none relative overflow-hidden group">
+                    <div class="absolute -right-6 -top-6 w-24 h-24 bg-indigo-500/5 rounded-full blur-xl group-hover:bg-indigo-500/10 transition-colors pointer-events-none"></div>
+                    <div>
+                        <span class="block text-[10px] uppercase tracking-widest opacity-50 mb-1 font-bold text-gray-500 dark:text-gray-400">Published</span>
+                        <span id="modal-date" class="text-gray-900 dark:text-gray-200 font-mono text-sm font-semibold"></span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] uppercase tracking-widest opacity-50 mb-1 font-bold text-gray-500 dark:text-gray-400">ISBN</span>
+                        <span id="modal-isbn" class="text-gray-900 dark:text-gray-200 font-mono text-sm font-semibold break-all"></span>
+                    </div>
+                    <div id="modal-lexile-container" class="col-span-2 pt-4 mt-2 border-t border-gray-100 dark:border-white/5">
+                        <span class="block text-[10px] uppercase tracking-widest opacity-50 mb-1 font-bold text-gray-500 dark:text-gray-400">Lexile / Reading Level</span>
+                        <span id="modal-lexile" class="text-emerald-600 dark:text-emerald-400 font-black text-lg"></span>
                     </div>
                 </div>
 
-                <!-- Disclaimer Button -->
-                <div class="flex self-start">
-                    <button onclick="openDisclaimerModal()"
-                        class="text-sm text-text-secondary hover:text-primary transition-colors flex items-center gap-1">
-                        <i class="fas fa-exclamation-circle text-yellow-500"></i> View Disclaimer
-                    </button>
+                <!-- Description -->
+                <div class="mb-8">
+                    <p id="modal-description" class="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed font-medium"></p>
+                </div>
+
+                <!-- Action Buttons Area -->
+                <div class="mt-auto pt-6 border-t border-gray-200 dark:border-white/10 flex flex-col gap-5">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a id="modal-read-online-link" href="#" target="_blank" rel="noopener noreferrer"
+                            class="flex-1 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white py-3.5 px-6 rounded-xl font-bold text-center shadow-lg shadow-indigo-500/25 transition-all transform hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                            <i class="fas fa-book-open"></i> <span>Read Online</span>
+                        </a>
+
+                        <div class="flex gap-2 justify-center sm:justify-start">
+                             <a id="modal-pdf-link" href="#" target="_blank" rel="noopener noreferrer"
+                                class="bg-gray-100 dark:bg-white/5 hover:bg-rose-50 dark:hover:bg-rose-500/10 text-gray-700 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-400 p-3.5 rounded-xl border border-gray-200 dark:border-white/10 transition-colors tooltip-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 shadow-sm"
+                                title="Download PDF" aria-label="Download PDF">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                            <a id="modal-epub-link" href="#" target="_blank" rel="noopener noreferrer"
+                                class="bg-gray-100 dark:bg-white/5 hover:bg-blue-50 dark:hover:bg-blue-500/10 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 p-3.5 rounded-xl border border-gray-200 dark:border-white/10 transition-colors tooltip-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 shadow-sm"
+                                title="Download ePUB" aria-label="Download ePUB">
+                                <i class="fas fa-book"></i>
+                            </a>
+                            <a id="modal-mobi-link" href="#" target="_blank" rel="noopener noreferrer"
+                                class="bg-gray-100 dark:bg-white/5 hover:bg-amber-50 dark:hover:bg-amber-500/10 text-gray-700 dark:text-gray-300 hover:text-amber-600 dark:hover:text-amber-400 p-3.5 rounded-xl border border-gray-200 dark:border-white/10 transition-colors tooltip-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 shadow-sm"
+                                title="Download MOBI" aria-label="Download MOBI">
+                                <i class="fas fa-tablet-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Disclaimer Button -->
+                    <div class="flex">
+                        <button onclick="openDisclaimerModal()"
+                            class="text-[11px] font-bold uppercase tracking-widest text-gray-400 hover:text-amber-500 transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded p-1">
+                            <i class="fas fa-exclamation-circle text-amber-500/80"></i> Content Disclaimer
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -245,28 +253,33 @@ include '../src/header.php';
 
 <!-- Disclaimer Modal -->
 <div id="disclaimerModal"
-    class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"
+    class="fixed inset-0 z-[110] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300 pointer-events-none"
     role="alertdialog" aria-modal="true" onclick="closeDisclaimerModal()">
-    <div class="bg-content-bg border rounded-2xl shadow-2xl w-full max-w-md p-6 m-4 relative"
+    <div class="absolute inset-0 bg-gray-900/60 dark:bg-black/70 backdrop-blur-sm pointer-events-auto"></div>
+    <div class="bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-white/10 rounded-3xl shadow-2xl w-full max-w-md p-8 m-4 relative pointer-events-auto z-10 transform scale-95 transition-transform duration-300 disclaimer-modal-content"
         onclick="event.stopPropagation()">
 
         <button onclick="closeDisclaimerModal()" id="disclaimer-modal-close"
-            class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-base-bg text-text-default hover:bg-primary hover:text-white transition-colors flex items-center justify-center border shadow-sm">
+            class="absolute top-5 right-5 z-10 w-10 h-10 rounded-xl bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white transition-colors flex items-center justify-center border border-transparent shadow-sm">
             <i class="fas fa-times"></i>
         </button>
 
-        <div class="text-center mb-4">
-            <i class="fas fa-exclamation-triangle text-4xl text-yellow-500 mb-2"></i>
-            <h3 class="text-2xl font-bold text-text-default">Disclaimer</h3>
+        <div class="text-center mb-6 mt-2">
+            <div class="w-20 h-20 bg-amber-50 dark:bg-amber-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-amber-100 dark:border-amber-500/30">
+                 <i class="fas fa-exclamation-triangle text-3xl text-amber-500"></i>
+            </div>
+            <h3 class="text-3xl font-black font-outfit text-gray-900 dark:text-white tracking-tight">Disclaimer</h3>
         </div>
-        <p class="text-text-secondary text-sm leading-relaxed mb-6 text-center">
-            The books and materials in this digital library are provided for educational and informational purposes
-            only. Hesten's Learning makes no claims of ownership over third-party content. Please ensure your use of
-            these materials complies with applicable copyright laws before downloading.
-        </p>
+        <div class="bg-gray-50 dark:bg-white/5 p-6 rounded-2xl border border-gray-100 dark:border-white/5 mb-8">
+            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed font-medium">
+                 The books and materials in this digital library are provided for educational and informational purposes
+                 only. Hesten's Learning makes no claims of ownership over third-party content. Please ensure your use of
+                 these materials complies with applicable copyright laws before downloading.
+            </p>
+        </div>
         <div class="flex justify-center">
             <button onclick="closeDisclaimerModal()"
-                class="bg-gradient-to-r from-primary to-secondary text-white py-2 px-6 rounded-xl font-bold shadow-lg hover:opacity-90 transition-opacity">
+                class="bg-gray-900 dark:bg-white text-white dark:text-gray-900 py-3.5 px-8 rounded-xl font-bold shadow-lg hover:-translate-y-1 transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400">
                 I Understand
             </button>
         </div>
@@ -277,35 +290,19 @@ include '../src/header.php';
     // --- Live Search & Filter Logic ---
     const searchInput = document.getElementById('library-search');
     const categoryFilter = document.getElementById('category-filter');
-    const sortFilter = document.getElementById('sort-filter');
     const categoriesContainers = document.querySelectorAll('.library-category');
     const noResults = document.getElementById('no-results');
 
-    function filterAndSortBooks() {
+    function filterBooks() {
         const term = searchInput.value.toLowerCase();
         const selectedCat = categoryFilter.value;
-        const sortBy = sortFilter.value;
         let totalVisible = 0;
 
         categoriesContainers.forEach(categoryContainer => {
-            const catName = categoryContainer.querySelector('h2').textContent.trim();
-            const bookContainer = categoryContainer.querySelector('.book-container');
+            const catNameElement = categoryContainer.querySelector('h2');
+            if(!catNameElement) return;
+            const catName = catNameElement.textContent.trim();
             const books = Array.from(categoryContainer.querySelectorAll('.book-card'));
-
-            // Sort books
-            if (sortBy !== 'default') {
-                books.sort((a, b) => {
-                    if (sortBy === 'title-asc') {
-                        return a.dataset.title.localeCompare(b.dataset.title);
-                    } else if (sortBy === 'author-asc') {
-                        return a.dataset.author.localeCompare(b.dataset.author);
-                    }
-                    return 0;
-                });
-
-                // Re-append to DOM for sorting
-                books.forEach(book => bookContainer.appendChild(book));
-            }
 
             let categoryHasVisible = false;
 
@@ -318,19 +315,21 @@ include '../src/header.php';
                 const matchesCategory = selectedCat === 'all' || selectedCat === catName;
 
                 if (matchesSearch && matchesCategory) {
-                    book.style.display = 'block';
-                    categoryHasVisible = true;
-                    totalVisible++;
+                     book.classList.remove('hidden');
+                     book.style.display = 'flex';
+                     categoryHasVisible = true;
+                     totalVisible++;
                 } else {
-                    book.style.display = 'none';
+                     book.classList.add('hidden');
+                     book.style.display = 'none';
                 }
             });
 
             // Hide the entire row if empty or if filtered out by category dropdown
             if (categoryHasVisible && (selectedCat === 'all' || selectedCat === catName)) {
-                categoryContainer.style.display = 'block';
+                categoryContainer.classList.remove('hidden');
             } else {
-                categoryContainer.style.display = 'none';
+                categoryContainer.classList.add('hidden');
             }
         });
 
@@ -343,13 +342,16 @@ include '../src/header.php';
 
     // Debounce wrapper
     let timeout = null;
-    searchInput.addEventListener('input', () => {
-        clearTimeout(timeout);
-        timeout = setTimeout(filterAndSortBooks, 300);
-    });
-
-    categoryFilter.addEventListener('change', filterAndSortBooks);
-    sortFilter.addEventListener('change', filterAndSortBooks);
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(filterBooks, 300);
+        });
+    }
+    
+    if (categoryFilter) {
+        categoryFilter.addEventListener('change', filterBooks);
+    }
 
     // --- Horizontal Scroll Logic ---
     document.querySelectorAll('.library-category').forEach(category => {
@@ -358,7 +360,7 @@ include '../src/header.php';
         const rightBtn = category.querySelector('.scroll-btn.right');
 
         if (leftBtn && rightBtn && container) {
-            const scrollAmount = 400; // Scroll amount in px
+            const scrollAmount = Math.max(container.clientWidth * 0.7, 300); // Dynamic responsive scroll
             leftBtn.addEventListener('click', () => {
                 container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
             });
@@ -370,6 +372,7 @@ include '../src/header.php';
 
     // --- Modal Logic ---
     const modal = document.getElementById('bookModal');
+    const modalContent = modal ? modal.querySelector('.book-modal-content') : null;
     const modalTitle = document.getElementById('modal-title');
     const modalAuthor = document.getElementById('modal-author');
     const modalDescription = document.getElementById('modal-description');
@@ -407,47 +410,86 @@ include '../src/header.php';
             modalLexileContainer.style.display = 'none';
         }
 
+        // Open animation
         modal.classList.remove('hidden');
-        // Small delay for fade in
+        void modal.offsetWidth; // Trigger reflow
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100');
+        if (modalContent) {
+           modalContent.classList.remove('scale-95', 'opacity-0');
+           modalContent.classList.add('scale-100', 'opacity-100');
+        }
+        document.body.style.overflow = 'hidden'; // Prevents background scroll
+        
         setTimeout(() => {
-            modal.classList.remove('opacity-0');
             const closeBtn = document.getElementById('book-modal-close');
             if (closeBtn) closeBtn.focus();
-        }, 10);
+        }, 100);
     }
 
     function setupLink(el, url) {
+        if (!el) return;
         if (!url || url === '#') {
-            el.classList.add('opacity-50', 'pointer-events-none', 'grayscale');
+            el.classList.add('opacity-40', 'pointer-events-none', 'grayscale', 'cursor-not-allowed');
             el.href = '#';
+            el.removeAttribute('target');
+            el.removeAttribute('rel');
         } else {
-            el.classList.remove('opacity-50', 'pointer-events-none', 'grayscale');
+            el.classList.remove('opacity-40', 'pointer-events-none', 'grayscale', 'cursor-not-allowed');
             el.href = url;
+            el.target = '_blank'; // From the target="_blank" book links conversation!
+            el.rel = 'noopener noreferrer';
         }
     }
 
     window.closeModal = function () {
+        if (!modal) return;
+        modal.classList.remove('opacity-100');
         modal.classList.add('opacity-0');
-        setTimeout(() => modal.classList.add('hidden'), 300);
+        if (modalContent) {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+        }
+        
+        setTimeout(() => {
+            modal.classList.add('hidden', 'pointer-events-none');
+            document.body.style.overflow = '';
+        }, 300);
     }
 
     window.openDisclaimerModal = function () {
-        const disclaimerModal = document.getElementById('disclaimerModal');
-        disclaimerModal.classList.remove('hidden');
-        setTimeout(() => {
-            disclaimerModal.classList.remove('opacity-0');
-            const closeBtn = document.getElementById('disclaimer-modal-close');
-            if (closeBtn) closeBtn.focus();
-        }, 10);
+        const dModal = document.getElementById('disclaimerModal');
+        const dContent = dModal.querySelector('.disclaimer-modal-content');
+        if(!dModal) return;
+        
+        dModal.classList.remove('hidden');
+        void dModal.offsetWidth;
+        dModal.classList.remove('opacity-0', 'pointer-events-none');
+        dModal.classList.add('opacity-100');
+        
+        if (dContent){
+            dContent.classList.remove('scale-95');
+            dContent.classList.add('scale-100');
+        }
     }
 
     window.closeDisclaimerModal = function () {
-        const disclaimerModal = document.getElementById('disclaimerModal');
-        disclaimerModal.classList.add('opacity-0');
-        setTimeout(() => disclaimerModal.classList.add('hidden'), 300);
+        const dModal = document.getElementById('disclaimerModal');
+        const dContent = dModal.querySelector('.disclaimer-modal-content');
+        if(!dModal) return;
+        
+        dModal.classList.remove('opacity-100');
+        dModal.classList.add('opacity-0');
+        
+        if(dContent) {
+             dContent.classList.remove('scale-100');
+             dContent.classList.add('scale-95');
+        }
+        
+        setTimeout(() => dModal.classList.add('hidden', 'pointer-events-none'), 300);
     }
 
-    // Close on Escape
+    // Close on Escape & Initial setup
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             const disclaimerModal = document.getElementById('disclaimerModal');
@@ -457,6 +499,37 @@ include '../src/header.php';
                 closeModal();
             }
         }
+    });
+
+    // Run custom setup on boot
+    document.addEventListener("DOMContentLoaded", () => {
+         // Fix CSS missing custom utilities
+         const style = document.createElement('style');
+         style.textContent = `
+             .scrollbar-none::-webkit-scrollbar { display: none; }
+             .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+             .custom-modal-scrollbar::-webkit-scrollbar { width: 8px; border-radius: 9999px; }
+             .custom-modal-scrollbar::-webkit-scrollbar-track { background: transparent; }
+             .custom-modal-scrollbar::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.4); border-radius: 9999px; }
+             .dark .custom-modal-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); }
+             .custom-modal-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(156, 163, 175, 0.8); }
+             .dark .custom-modal-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.4); }
+         `;
+         document.head.appendChild(style);
+         
+         // Trigger reveal animations
+         const revealObserver = new IntersectionObserver((entries) => {
+             entries.forEach(entry => {
+                 if (entry.isIntersecting) {
+                     entry.target.classList.add('animate-reveal');
+                     revealObserver.unobserve(entry.target);
+                 }
+             });
+         }, { threshold: 0.1 });
+
+         document.querySelectorAll('.will-animate').forEach(el => {
+             revealObserver.observe(el);
+         });
     });
 </script>
 
