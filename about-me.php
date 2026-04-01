@@ -44,7 +44,7 @@
 
         <!-- Profile Photo Column -->
         <div class="w-full md:w-1/3 text-center mb-6 md:mb-0 flex-shrink-0">
-          <img src="Images/profile-photo.jpg" alt="Hesten Allison" 
+          <img src="/assets/images/profile-photo.jpg" alt="Hesten Allison" 
                class="w-48 h-48 md:w-60 md:h-60 object-cover rounded-full shadow-lg mx-auto border-4 border-primary" 
                onerror="this.onerror=null; this.src='https://placehold.co/240x240/818CF8/FFFFFF?text=HL';">
         </div>

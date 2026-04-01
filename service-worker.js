@@ -21,19 +21,22 @@ const ASSETS_TO_CACHE = [
   '/terms-of-use.php',
 
   // Images
-  '/Images/6791421e-7ca7-40bd-83d3-06a479bf7f36.png',
+  '/assets/images/6791421e-7ca7-40bd-83d3-06a479bf7f36.png',
 
   // CSS
-  '/src/styles.css',
-  '/src/w3.css',
+  '/assets/css/styles.css',
+  '/assets/css/w3.css',
 
   // JavaScript
-  '/JS/assessment-core.js',
-  '/JS/questionGenerator.js',
-  '/JS/a11y.js',
-  '/JS/standard.js',
+  '/assets/js/assessment-core.js',
+  '/assets/js/questionGenerator.js',
+  '/assets/js/a11y.js',
+  '/assets/js/standard.js',
+  '/assets/js/index-page.js',
+  '/assets/js/announcements.js',
+  '/assets/js/core-ui.js',
 
-  // SRC Files
+  // SRC Files (These are PHP partials, usually not cached directly by URL if used via include, but keeping them for consistency)
   '/src/footer.php',
   '/src/header.php',
 

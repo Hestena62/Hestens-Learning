@@ -196,8 +196,8 @@ include '../src/header.php';
     </div>
 </div>
 
-<script src="/JS/p-12.js"></script>
-<script src="/JS/AP.js"></script>
-<script src="/JS/assessment-page.js"></script>
+<script src="/assets/js/p-12.js"></script>
+<script src="/assets/js/AP.js"></script>
+<script src="/assets/js/assessment-page.js"></script>
 
 <?php include '../src/footer.php'; ?>

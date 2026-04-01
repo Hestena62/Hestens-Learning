@@ -11,7 +11,7 @@ $pageTitle = "Hesten's Learning Blog";
 $pageDescription = "A blog about personalized learning, technology, and education.";
 $pageKeywords = "blog, education, learning, tailwind, php";
 $pageAuthor = "Hesten Allison";
-$pageOgImage = "/Images/6791421e-7ca7-40bd-83d3-06a479bf7f36.png"; // Default OG image
+$pageOgImage = "/assets/images/6791421e-7ca7-40bd-83d3-06a479bf7f36.png"; // Default OG image
 $welcomeMessage = "Welcome to the Blog"; // Optional: For the popup
 $welcomeParagraph = "Explore articles on learning, technology, and more."; // Optional: For the popup
 
@@ -684,7 +684,7 @@ ${post.author}. "${post.title}." <em>Hesten's Learning Blog</em>, ${day} ${month
           "logo": {
             "@type": "ImageObject",
             // TODO: Replace with a full URL to your logo
-            "url": "https://hestena62.com/Images/6791421e-7ca7-40bd-83d3-06a479bf7f36.png"
+            "url": "https://hestena62.com/assets/images/6791421e-7ca7-40bd-83d3-06a479bf7f36.png"
           }
         },
         "mainEntityOfPage": {

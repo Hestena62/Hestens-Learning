@@ -13,7 +13,7 @@
                     </h4>
                     <div class="flex items-center gap-3 group">
                         <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/20 group-hover:rotate-6 transition-transform duration-300 overflow-hidden">
-                            <img src="/Images/6791421e-7ca7-40bd-83d3-06a479bf7f36.png" alt="Logo" class="w-full h-full object-cover">
+                            <img src="/assets/images/6791421e-7ca7-40bd-83d3-06a479bf7f36.png" alt="Logo" class="w-full h-full object-cover" loading="lazy">
                         </div>
                         <div class="flex flex-col">
                             <span class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-none group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">Hesten's Learning</span>
@@ -143,7 +143,7 @@
 <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script>
 
 <!-- Footer Scripts -->
-<script src="/JS/error-handler.js"></script>
+<script src="/assets/js/error-handler.js"></script>
 <script>
     // Year
     document.addEventListener("DOMContentLoaded", () => {
@@ -301,4 +301,4 @@
         }
     }); // End DOMContentLoaded
 </script>
-<script src="/JS/standard.js"></script>
+<script src="/assets/js/standard.js"></script>

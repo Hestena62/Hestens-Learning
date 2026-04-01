@@ -141,7 +141,7 @@ include 'src/header.php';
                     </p>
                 </div>
                 <div class="mt-8">
-                    <img src="Images/signature-placeholder.png" alt="Hesten Allison" class="h-12 opacity-80"
+                    <img src="/assets/images/signature-placeholder.png" alt="Hesten Allison" class="h-12 opacity-80"
                         onerror="this.style.display='none'">
                     <p class="font-bold text-xl mt-2">Hesten Allison</p>
                     <p class="text-blue-200 text-sm">Founder & Developer</p>

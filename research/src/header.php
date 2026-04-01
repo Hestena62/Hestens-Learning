@@ -158,7 +158,7 @@
   </script>
 
   <!-- Favicon -->
-  <link rel="icon" href="Images/6791421e-7ca7-40bd-83d3-06a479bf7f36.png" />
+  <link rel="icon" href="/assets/images/6791421e-7ca7-40bd-83d3-06a479bf7f36.png" />
 
   <!-- Custom Styles -->
   <style>
