@@ -2,7 +2,6 @@
 $pageTitle = "Hesten's Learning"; // SEO Title
 include 'src/header.php';
 
-
 // --- DATA: Client-Side Loading Migration ---
 // Data is now loaded via <script src="data/learningLevels.js"></script> below
 ?>
@@ -10,10 +9,7 @@ include 'src/header.php';
 <!-- DATA IMPORT -->
 <script src="data/learningLevels.js"></script>
 
-
 <?php include __DIR__ . '/src/partials/hero.php'; ?>
-
-
 
 <!-- MAIN CONTENT -->
 <main class="container mx-auto my-20 px-6 scroll-mt-24 min-h-screen" id="main-content" tabindex="-1">
@@ -22,13 +18,7 @@ include 'src/header.php';
 
     <?php include __DIR__ . '/src/partials/academic-path-header.php'; ?>
 
-
-
-
-
-
     <?php include __DIR__ . '/src/partials/learning-grid.php'; ?>
-
 
     <?php include __DIR__ . '/src/partials/no-results.php'; ?>
 
@@ -38,7 +28,5 @@ include 'src/header.php';
 
 <!-- PAGE SCRIPT -->
 <script src="assets/js/index-page.js"></script>
-
-
 
 <?php include 'src/footer.php'; ?>

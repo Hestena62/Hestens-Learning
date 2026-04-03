@@ -2720,3 +2720,13 @@ h3,
 .will-animate {
     will-change: transform, opacity;
 }
+/* Swup Page Transitions */
+main#main-content {
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  opacity: 1;
+  transform: translateY(0);
+}
+html.is-animating main#main-content {
+  opacity: 0;
+  transform: translateY(10px);
+}

@@ -139,4 +139,5 @@
     </header>
 
     <script src="/assets/js/a11y.js"></script>
-    <script src="/assets/js/core-ui.js"></script>
+    <script src="/assets/js/core-ui.js"></script>
+    <script src="/assets/js/core-ui.js"></script>
